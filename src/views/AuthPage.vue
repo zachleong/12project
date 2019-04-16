@@ -5,7 +5,7 @@
                 <AuthForm />
             </el-tab-pane>
             <el-tab-pane label="Register">
-                Register
+                <SignUp />
             </el-tab-pane>
         </el-tabs>
     </div>
@@ -13,9 +13,12 @@
 
 <script>
 import AuthForm from "@/components/AuthForm.vue";
+import SignUp from "@/components/SignUp.vue";
+
 export default {
     components: {
-        AuthForm
+        AuthForm,
+        SignUp
     }
 }
 </script>

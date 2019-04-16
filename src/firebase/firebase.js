@@ -11,7 +11,7 @@ const config = {
 firebase.initializeApp(config);
 firebase.auth().onAuthStateChanged( user => {
     if (user) {
-        console.log(`user is ${user}`);
+        console.log(`user is ${user.email}`);
         
     }
 });
