@@ -1,4 +1,6 @@
 import firebase from 'firebase/app';
+import store from "@/Vuex/store";
+
 import 'firebase/auth';
 const config = {
     apiKey: "AIzaSyCBOySSw3riF7HEgU2rJgp4aONEvxZhwsk",
@@ -12,7 +14,11 @@ firebase.initializeApp(config);
 firebase.auth().onAuthStateChanged( user => {
     if (user) {
         console.log(`user is ${user.email}`);
-        
+        store.commit('setAuthUser', true);
+    }
+    else {
+        console.log("not signed in");
+        store.commit('setAuthUser', false);
     }
 });
 console.log("firebase initialized");
