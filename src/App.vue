@@ -32,7 +32,11 @@ export default {
     }
   }
 }
+html {
+  height: 100%;
+}
 body {
   margin: 0;
+  background-color: #ecf5ff;
 }
 </style>
