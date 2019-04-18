@@ -4,8 +4,8 @@
             <router-link to="/" class="navlink">Home</router-link>
         </el-menu-item>
         <el-menu-item id="authButton">
-            <el-button v-if="userIsAuth===true" v-on:click="signOut">Sign out</el-button>
-            <el-button v-else-if="userIsAuth===false" v-on:click="goToLogin">Login</el-button>
+            <el-button v-if="userIsAuth===true" v-on:click="signOut" type="primary" plain>Sign out</el-button>
+            <el-button v-else-if="userIsAuth===false" v-on:click="goToLogin" type="primary">Login</el-button>
         </el-menu-item>
     </el-menu>  
 </template>
