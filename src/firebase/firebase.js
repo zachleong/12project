@@ -15,6 +15,7 @@ firebase.auth().onAuthStateChanged(user => {
   if (user) {
     console.log(`user is ${user.email}`);
     store.commit("setAuthUser", true);
+    store.commit("setUserEmail", user.email);
   } else {
     console.log("not signed in");
     store.commit("setAuthUser", false);

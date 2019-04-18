@@ -3,6 +3,9 @@
     <el-menu-item>
       <router-link to="/" class="navlink">Home</router-link>
     </el-menu-item>
+    <el-menu-item>
+      <router-link to="/projects" class="navlink">Projects</router-link>
+    </el-menu-item>
     <el-menu-item id="authButton">
       <el-button
         v-if="userIsAuth === true"

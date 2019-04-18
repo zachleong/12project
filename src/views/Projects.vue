@@ -1,15 +1,19 @@
 <template>
-  <div class="home">
-    <h1 v-if="userEmail">Welcome back, {{ userEmail }}</h1>
+  <div class="projects">
+    <ProjectCards />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import ProjectCards from "@/components/ProjectCards.vue";
 import store from "@/Vuex/store";
 
 export default {
-  name: "home",
+  name: "projects",
+  components: {
+    ProjectCards
+  },
   data() {
     return {
       user: store.state.userEmail

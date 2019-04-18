@@ -14,6 +14,9 @@ export default new Vuex.Store({
     setAuthUser(state, payload) {
       this.state.userIsAuth = payload;
     },
+    setUserEmail(state, payload) {
+      this.state.userEmail = payload;
+    },
     loading(state, payload) {
       this.state.loading = payload;
     }
