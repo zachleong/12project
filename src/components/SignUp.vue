@@ -3,7 +3,7 @@
     <h1>Register</h1>
     <el-form>
       <el-form-item label="Email">
-        <el-input placeholder="Please enter email" v-model="email"></el-input>
+        <el-input placeholder="Please enter email" v-model="email" />
       </el-form-item>
       <el-form-item label="Password">
         <el-input
@@ -11,7 +11,7 @@
           placeholder="Please enter password"
           v-model="password"
           show-password
-        ></el-input>
+        />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">Register</el-button>
