@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <Navbar />
+    <Navbar />
     <router-view />
   </div>
 </template>
@@ -8,12 +8,11 @@
 import Navbar from "@/components/Navbar";
 
 export default {
-    components: {
-        Navbar
-    }
-}
+  components: {
+    Navbar
+  }
+};
 </script>
-
 
 <style lang="scss">
 #app {
@@ -34,6 +33,6 @@ export default {
   }
 }
 body {
-    margin: 0;
+  margin: 0;
 }
 </style>

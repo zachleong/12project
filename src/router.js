@@ -14,9 +14,9 @@ export default new Router({
       component: Home
     },
     {
-        path: "/login",
-        name: "login",
-        component: Login
+      path: "/login",
+      name: "login",
+      component: Login
     },
     {
       path: "/about",
@@ -26,7 +26,6 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () =>
         import(/* webpackChunkName: "about" */ "./views/About.vue")
-    },
-
+    }
   ]
 });

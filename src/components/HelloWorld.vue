@@ -1,14 +1,14 @@
 <template>
   <div class="hello">
-      <h1>Projects</h1>
-      <div class="projectcards" v-if="projectsPopulated">
+    <h1>Projects</h1>
+    <div class="projectcards" v-if="projectsPopulated">
       <template v-for="project in projectsContent">
         <el-card class="box-card" :key="project.id">
-            <div slot="header">{{project.title}}</div>
-            <p>{{project.desc}}</p>
+          <div slot="header">{{ project.title }}</div>
+          <p>{{ project.desc }}</p>
         </el-card>
       </template>
-      </div>
+    </div>
   </div>
 </template>
 
@@ -19,39 +19,39 @@ import "firebase/firestore";
 export default {
   name: "HelloWorld",
   data() {
-      return {
-          //Should this changing data be in here?
-          projectsPopulated: false,
-          projectsContent: [],
-      }
+    return {
+      //Should this changing data be in here?
+      projectsPopulated: false,
+      projectsContent: []
+    };
   },
-  created: function () {
-      this.getProjects();
+  created: function() {
+    this.getProjects();
   },
   methods: {
-      getProjects() {
-          console.log("Getting projects");
-          
-          const db = firebase.firestore();
-          db.collection("Projects").get()
-            .then(projectDocs => {
-                projectDocs.forEach( doc => {
-                    //create project object from document and push to array
-                    const newproject = {
-                        id: doc.id,
-                        title: doc.data().projectTitle,
-                        desc: doc.data().projectDesc
+    getProjects() {
+      console.log("Getting projects");
 
-                    };
-                    this.projectsContent.push(newproject);
-                })
-                //after projects are all fetched
-                this.projectsPopulated = true;
-            })
-            .catch( error => {
-                console.log(error);
-            });
-      }
+      const db = firebase.firestore();
+      db.collection("Projects")
+        .get()
+        .then(projectDocs => {
+          projectDocs.forEach(doc => {
+            //create project object from document and push to array
+            const newproject = {
+              id: doc.id,
+              title: doc.data().projectTitle,
+              desc: doc.data().projectDesc
+            };
+            this.projectsContent.push(newproject);
+          });
+          //after projects are all fetched
+          this.projectsPopulated = true;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   }
 };
 </script>
@@ -73,12 +73,12 @@ a {
   color: #42b983;
 }
 .box-card {
-    text-align: left;
-    width: 75%;
-    display: inline-block;
-    margin-top: 30px;
+  text-align: left;
+  width: 75%;
+  display: inline-block;
+  margin-top: 30px;
 }
 .projectcards {
-    text-align: center;
+  text-align: center;
 }
 </style>
