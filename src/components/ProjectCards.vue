@@ -1,9 +1,8 @@
 <template>
   <div class="hello">
-    <h1>Projects</h1>
     <div class="projectcards" v-if="projectsPopulated">
       <template v-for="project in projectsContent">
-        <el-card class="box-card" :key="project.id">
+        <el-card class="box-card" :key="project.id" shadow="hover">
           <div slot="header">{{ project.title }}</div>
           <p>{{ project.desc }}</p>
         </el-card>

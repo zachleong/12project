@@ -1,5 +1,6 @@
 <template>
   <div class="projects">
+    <h1 class="header">Projects</h1>
     <ProjectCards />
   </div>
 </template>
@@ -26,3 +27,4 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped></style>

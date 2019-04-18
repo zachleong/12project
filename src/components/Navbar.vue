@@ -41,6 +41,8 @@ export default {
         .signOut()
         .then(() => {
           console.log("logged out");
+          store.commit("setAuthUser", false);
+          store.commit("setUserEmail", "");
         })
         .catch(error => {
           console.log(error);
@@ -55,8 +57,14 @@ export default {
 <style lang="scss" scoped>
 .navlink {
   text-decoration: none;
+  padding: 10px;
+  color: white;
 }
 #authButton {
   float: right;
+}
+.navbar {
+  display: inline-block;
+  background-color: blue;
 }
 </style>
