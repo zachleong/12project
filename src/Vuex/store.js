@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     userName: "",
     userEmail: "",
-    userIsAuth: false,
+    userIsAuth: null,
     loading: false
   },
   mutations: {
