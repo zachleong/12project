@@ -1,20 +1,57 @@
 <template>
   <div class="hello">
       <h1>Projects</h1>
-      <div class="projectcards">
-      <el-card class="box-card">
-          <div slot="header">Project Title</div>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      </el-card>
+      <div class="projectcards" v-if="projectsPopulated">
+      <template v-for="project in projectsContent">
+        <el-card class="box-card" :key="project.id">
+            <div slot="header">{{project.title}}</div>
+            <p>{{project.desc}}</p>
+        </el-card>
+      </template>
       </div>
   </div>
 </template>
 
 <script>
+import firebase from "firebase/app";
+import "firebase/firestore";
+
 export default {
   name: "HelloWorld",
-  props: {
-    msg: String
+  data() {
+      return {
+          //Should this changing data be in here?
+          projectsPopulated: false,
+          projectsContent: [],
+      }
+  },
+  created: function () {
+      this.getProjects();
+  },
+  methods: {
+      getProjects() {
+          console.log("Getting projects");
+          
+          const db = firebase.firestore();
+          db.collection("Projects").get()
+            .then(projectDocs => {
+                projectDocs.forEach( doc => {
+                    //create project object from document and push to array
+                    const newproject = {
+                        id: doc.id,
+                        title: doc.data().projectTitle,
+                        desc: doc.data().projectDesc
+
+                    };
+                    this.projectsContent.push(newproject);
+                })
+                //after projects are all fetched
+                this.projectsPopulated = true;
+            })
+            .catch( error => {
+                console.log(error);
+            });
+      }
   }
 };
 </script>
@@ -39,6 +76,7 @@ a {
     text-align: left;
     width: 75%;
     display: inline-block;
+    margin-top: 30px;
 }
 .projectcards {
     text-align: center;
