@@ -67,7 +67,7 @@ export default {
 }
 .router-link-exact-active {
   background: rgba(255, 255, 255, 0.8);
-  border-bottom: 1px solid;
+  border-bottom: 2px solid;
   border-bottom-color: #409eff;
 }
 .navlink-center {
