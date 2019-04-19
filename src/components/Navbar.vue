@@ -59,20 +59,20 @@ export default {
 <style lang="scss" scoped>
 .navlink {
   text-decoration: none;
-  padding: 10px 10px 23px 10px;
+  padding: 10px;
   color: #2c3e50;
+  display: flex;
+  align-items: center;
+  height: 49px;
 }
 .router-link-exact-active {
   background: rgba(255, 255, 255, 0.8);
   border-bottom: 1px solid;
   border-bottom-color: #409eff;
-  //   -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
-  //   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
 }
 .navlink-center {
   padding: 0 5px 0 5px;
   float: left;
-  line-height: 70px;
 }
 #authButton {
   float: right;
@@ -88,5 +88,9 @@ export default {
 }
 .center {
   text-align: center;
+}
+.el-button {
+  font-size: 16px;
+  font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
 }
 </style>
