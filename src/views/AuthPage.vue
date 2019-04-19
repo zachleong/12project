@@ -34,7 +34,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  margin-top: 100px;
+  margin-top: 70px;
   width: 400px;
   text-align: center;
   display: inline-block;
