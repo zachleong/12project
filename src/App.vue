@@ -16,7 +16,7 @@ export default {
 
 <style lang="scss">
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -37,6 +37,13 @@ html {
 }
 body {
   margin: 0;
-  background-color: #ecf5ff;
+  background-color: white;
+}
+h1 {
+  font-weight: normal;
+}
+
+h2 {
+  font-weight: normal;
 }
 </style>

@@ -2,11 +2,15 @@
   <div class="home">
     <h1 v-if="userEmail">Welcome back, {{ userEmail }}</h1>
     <template v-else>
-      <h1>Welcome to Git Money</h1>
-      <h2>Enterprise cloud solutions through blockchain technology</h2>
-      <div class="button-container">
-        <button class="big-btn">Get started</button>
-        <button class="big-btn">Pricing</button>
+      <div class="center">
+        <div class="landing-content">
+          <h1>Welcome to Git Money</h1>
+          <h2>Enterprise cloud solutions through blockchain technology</h2>
+          <div class="button-container">
+            <button class="big-btn">Get started</button>
+            <button class="big-btn">Pricing</button>
+          </div>
+        </div>
       </div>
     </template>
   </div>
@@ -31,6 +35,18 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.landing-content {
+  margin-top: 30px;
+  //   background-color: #409eff;
+  //   color: white;
+  padding: 20px;
+  width: 50%;
+  border-radius: 30px;
+  display: inline-block;
+}
+.center {
+  text-align: center;
+}
 .big-btn {
   padding: 20px;
   margin: 10px;

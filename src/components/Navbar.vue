@@ -61,12 +61,13 @@ export default {
   text-decoration: none;
   padding: 10px;
   color: #2c3e50;
-  border-radius: 4px;
 }
 .router-link-exact-active {
-  background-color: white;
-  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid;
+  border-bottom-color: #409eff;
+  //   -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+  //   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
 }
 .navlink-center {
   padding: 0 5px 0 5px;
@@ -79,10 +80,11 @@ export default {
   padding: 0 15px 0 15px;
 }
 .navbar {
-  width: 99%;
-  margin-top: 5px;
+  width: 100%;
   height: 70px;
   display: inline-block;
+  //   -webkit-box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
+  //   box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
 }
 .center {
   text-align: center;
