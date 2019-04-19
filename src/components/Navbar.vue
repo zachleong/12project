@@ -66,7 +66,7 @@ export default {
   float: left;
 }
 .brand {
-  padding-right: 40px;
+  padding-right: 20px;
   padding-left: 20px;
 }
 .router-link-exact-active {
