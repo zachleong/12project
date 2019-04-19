@@ -23,6 +23,7 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/auth";
+import store from "@/Vuex/store";
 export default {
   data() {
     return {
@@ -36,10 +37,16 @@ export default {
       if (!this.formIsValid) {
         console.log("form not valid");
       } else {
+        store.commit("loading", true);
         firebase
           .auth()
           .createUserWithEmailAndPassword(this.email, this.password)
+          .then(() => {
+            store.commit("loading", false);
+            this.$router.push({ name: "home" });
+          })
           .catch(error => {
+            store.commit("loading", false);
             console.log(error);
           });
       }
