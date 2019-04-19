@@ -59,7 +59,7 @@ export default {
 <style lang="scss" scoped>
 .navlink {
   text-decoration: none;
-  padding: 10px;
+  padding: 10px 10px 23px 10px;
   color: #2c3e50;
 }
 .router-link-exact-active {
@@ -83,8 +83,8 @@ export default {
   width: 100%;
   height: 70px;
   display: inline-block;
-  //   -webkit-box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
-  //   box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
 }
 .center {
   text-align: center;
