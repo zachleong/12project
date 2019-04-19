@@ -1,8 +1,12 @@
 <template>
   <div class="center">
     <div class="navbar">
-      <router-link to="/" class="navlink">Home</router-link>
-      <router-link to="/projects" class="navlink">Projects</router-link>
+      <div class="navlink-center">
+        <router-link to="/" class="navlink">Home</router-link>
+      </div>
+      <div class="navlink-center">
+        <router-link to="/projects" class="navlink">Projects</router-link>
+      </div>
       <div id="authButton">
         <el-button
           v-if="userIsAuth === true"
@@ -55,10 +59,19 @@ export default {
 <style lang="scss" scoped>
 .navlink {
   text-decoration: none;
-  padding: 0 15px 0 15px;
+  padding: 10px;
+  color: #2c3e50;
+  border-radius: 4px;
+}
+.router-link-exact-active {
+  background-color: white;
+  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+}
+.navlink-center {
+  padding: 0 5px 0 5px;
   float: left;
   line-height: 70px;
-  color: #2c3e50;
 }
 #authButton {
   float: right;
