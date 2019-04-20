@@ -49,6 +49,6 @@ export default {
   left: -150px;
 }
 .sidenav-content {
-  margin-top: 75px;
+  margin-top: 80px;
 }
 </style>
