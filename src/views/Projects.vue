@@ -11,7 +11,7 @@ import ProjectCards from "@/components/ProjectCards.vue";
 import store from "@/Vuex/store";
 
 export default {
-  name: "projects",
+  name: "projectPage",
   components: {
     ProjectCards
   },

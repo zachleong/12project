@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Navbar />
-    <router-view />
+    <keep-alive include="projectPage">
+      <router-view />
+    </keep-alive>
   </div>
 </template>
 <script>
