@@ -89,11 +89,14 @@ export default {
   padding: 0 15px 0 15px;
 }
 .navbar {
+  position: relative;
   width: 100%;
   height: 70px;
   display: inline-block;
   -webkit-box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  background-color: white;
 }
 .center {
   text-align: center;
