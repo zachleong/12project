@@ -11,8 +11,8 @@ export default {};
 <style lang="scss" scoped>
 .sidenav {
   z-index: 1;
-  position: fixed;
-  height: 100vw;
+  position: absolute;
+  height: 100%;
   width: 150px;
   top: 70px;
   left: 0;
