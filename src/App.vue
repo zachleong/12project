@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Navbar />
+    <SideNav />
     <keep-alive include="projectPage">
       <router-view />
     </keep-alive>
@@ -8,10 +9,12 @@
 </template>
 <script>
 import Navbar from "@/components/Navbar";
+import SideNav from "@/components/SideNav";
 
 export default {
   components: {
-    Navbar
+    Navbar,
+    SideNav
   }
 };
 </script>
