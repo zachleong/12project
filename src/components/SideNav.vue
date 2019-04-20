@@ -1,7 +1,9 @@
 <template>
   <transition name="slide">
     <div class="sidenav" :class="navActive" v-if="getNavActive">
-      <p class="sidenav-item">Filters</p>
+      <div class="sidenav-content">
+        <p>Filters</p>
+      </div>
     </div>
   </transition>
 </template>
@@ -20,7 +22,7 @@ export default {
   },
   computed: {
     getNavActive() {
-      return this.$route.name == "projects";
+      return this.$route.name == "projects" || this.navActive;
     }
   }
 };
@@ -32,18 +34,11 @@ export default {
   position: absolute;
   height: 100%;
   width: 150px;
-  top: 70px;
+  top: 0;
   left: 0;
   -webkit-box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
-}
-@keyframes sidenav-slide {
-  from {
-    left: -150px;
-  }
-  to {
-    left: 0;
-  }
+  background-color: white;
 }
 .slide-leave-active,
 .slide-enter-active {
@@ -52,5 +47,8 @@ export default {
 .slide-enter,
 .slide-leave-to {
   left: -150px;
+}
+.sidenav-content {
+  margin-top: 75px;
 }
 </style>
