@@ -1,9 +1,9 @@
 <template>
   <div class="center">
     <div class="navbar">
-      <router-link to="#" class="brand navlink">
+      <a class="brand navlink">
         <h2>Git Money</h2>
-      </router-link>
+      </a>
       <router-link to="/" class="navlink">Home</router-link>
       <router-link to="/projects" class="navlink">Projects</router-link>
       <div id="authButton">
