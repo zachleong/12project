@@ -70,9 +70,18 @@ export default {
   padding-left: 20px;
 }
 .router-link-exact-active {
-  background: rgba(255, 255, 255, 0.8);
+  //   background: rgba(255, 255, 255, 0.8);
   border-bottom: 2px solid;
   border-bottom-color: #409eff;
+  animation: fade-in 0.4s;
+}
+@keyframes fade-in {
+  from {
+    border-bottom-color: rgba(64, 158, 255, 0);
+  }
+  to {
+    border-bottom-color: rgba(64, 158, 255, 1);
+  }
 }
 #authButton {
   float: right;

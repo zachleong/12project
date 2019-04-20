@@ -5,7 +5,7 @@
       <div class="center">
         <div class="landing-content">
           <h1>Welcome to Git Money</h1>
-          <h2>Enterprise cloud solutions through blockchain technology</h2>
+          <h2>Here will be the mission statement or mantra</h2>
           <div class="button-container">
             <button class="big-btn">Get started</button>
             <button class="big-btn">Pricing</button>
