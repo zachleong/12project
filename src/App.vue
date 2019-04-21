@@ -2,9 +2,11 @@
   <div id="app">
     <Navbar />
     <SideNav />
-    <keep-alive include="projectPage">
-      <router-view />
-    </keep-alive>
+    <transition name="pageTrans" mode="out-in">
+      <keep-alive include="projectPage">
+        <router-view />
+      </keep-alive>
+    </transition>
   </div>
 </template>
 <script>
@@ -51,5 +53,13 @@ h1 {
 
 h2 {
   font-weight: normal;
+}
+.pageTrans-leave-active,
+.pageTrans-enter-active {
+  transition: opacity 0.2s;
+}
+.pageTrans-enter,
+.pageTrans-leave-to {
+  opacity: 0;
 }
 </style>
