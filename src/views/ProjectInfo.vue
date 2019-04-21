@@ -12,7 +12,7 @@
 <script>
 import store from "@/Vuex/store";
 import Card from "@/components/Card";
-import { getDoc } from "@/firebase/firebase";
+import { getProjectFromDB } from "@/firebase/firebase";
 export default {
   components: {
     Card
@@ -32,7 +32,7 @@ export default {
       if (passThrough) {
         this.project = passThrough;
       } else {
-        getDoc(this.$route.params.projectID)
+        getProjectFromDB(this.$route.params.projectID)
           .then(project => {
             this.project = project;
           })

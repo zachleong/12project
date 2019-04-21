@@ -15,7 +15,7 @@
 
 <script>
 import Card from "@/components/Card";
-import { getCollection } from "@/firebase/firebase";
+import { getProjectsFromDB } from "@/firebase/firebase";
 import store from "@/Vuex/store";
 
 export default {
@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     getProjects() {
-      getCollection("Projects")
+      getProjectsFromDB("Projects")
         .then(projects => {
           this.projects = projects;
         })

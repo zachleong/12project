@@ -29,7 +29,7 @@ const projectFromDoc = doc => {
     desc: doc.data().projectDesc
   };
 };
-export const getDoc = docID => {
+export const getProjectFromDB = docID => {
   const db = firebase.firestore();
   return db
     .collection("Projects")
@@ -40,7 +40,7 @@ export const getDoc = docID => {
       return newproject;
     });
 };
-export const getCollection = col => {
+export const getProjectsFromDB = col => {
   const db = firebase.firestore();
   return db
     .collection(col)
