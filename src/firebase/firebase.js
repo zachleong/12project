@@ -21,4 +21,22 @@ firebase.auth().onAuthStateChanged(user => {
     store.commit("setAuthUser", false);
   }
 });
+const projectFromDoc = doc => {
+  return {
+    id: doc.id,
+    title: doc.data().projectTitle,
+    desc: doc.data().projectDesc
+  };
+};
+export const getDoc = docID => {
+  const db = firebase.firestore();
+  return db
+    .collection("Projects")
+    .doc(docID)
+    .get()
+    .then(doc => {
+      const newproject = projectFromDoc(doc);
+      return newproject;
+    });
+};
 console.log("firebase initialized");
