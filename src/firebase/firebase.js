@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 import store from "@/Vuex/store";
 
 import "firebase/auth";
+import "firebase/firestore";
 const config = {
   apiKey: "AIzaSyCBOySSw3riF7HEgU2rJgp4aONEvxZhwsk",
   authDomain: "vue-firebase-4cc1a.firebaseapp.com",
@@ -37,6 +38,20 @@ export const getDoc = docID => {
     .then(doc => {
       const newproject = projectFromDoc(doc);
       return newproject;
+    });
+};
+export const getCollection = col => {
+  const db = firebase.firestore();
+  return db
+    .collection(col)
+    .get()
+    .then(allDocs => {
+      const projects = [];
+      allDocs.forEach(doc => {
+        const newproject = projectFromDoc(doc);
+        projects.push(newproject);
+      });
+      return projects;
     });
 };
 console.log("firebase initialized");

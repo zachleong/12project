@@ -1,6 +1,6 @@
 <template>
-  <div class="projectcards" v-if="projectsPopulated">
-    <template v-for="project in projectsContent">
+  <div class="projectcards" v-if="projects">
+    <template v-for="project in projects">
       <Card :key="project.id" class="box-card">
         <template v-slot:header>
           <div @click="goToProjectInfo(project)" class="card-header">
@@ -15,8 +15,7 @@
 
 <script>
 import Card from "@/components/Card";
-import firebase from "firebase/app";
-import "firebase/firestore";
+import { getCollection } from "@/firebase/firebase";
 import store from "@/Vuex/store";
 
 export default {
@@ -27,8 +26,7 @@ export default {
   data() {
     return {
       //Should this changing data be in here?
-      projectsPopulated: false,
-      projectsContent: []
+      projects: null
     };
   },
   mounted() {
@@ -36,23 +34,9 @@ export default {
   },
   methods: {
     getProjects() {
-      console.log("Getting projects");
-
-      const db = firebase.firestore();
-      db.collection("Projects")
-        .get()
-        .then(projectDocs => {
-          projectDocs.forEach(doc => {
-            //create project object from document and push to array
-            const newproject = {
-              id: doc.id,
-              title: doc.data().projectTitle,
-              desc: doc.data().projectDesc
-            };
-            this.projectsContent.push(newproject);
-          });
-          //after projects are all fetched
-          this.projectsPopulated = true;
+      getCollection("Projects")
+        .then(projects => {
+          this.projects = projects;
         })
         .catch(error => {
           console.log(error);
@@ -61,7 +45,6 @@ export default {
     goToProjectInfo(projectObj) {
       store.commit("setPassThrough", projectObj);
       this.$router.push(`/projects/${projectObj.id}`);
-      console.log("fired");
     }
   }
 };
