@@ -1,23 +1,29 @@
 <template>
   <div class="projectcards" v-if="projectsPopulated">
     <template v-for="project in projectsContent">
-      <el-card class="box-card" :key="project.id" shadow="hover">
-        <div slot="header" @click="goToProjectInfo(project)">
-          {{ project.title }}
-        </div>
+      <Card :key="project.id" class="box-card">
+        <template v-slot:header>
+          <div @click="goToProjectInfo(project)" class="card-header">
+            {{ project.title }}
+          </div>
+        </template>
         <p>{{ project.desc }}</p>
-      </el-card>
+      </Card>
     </template>
   </div>
 </template>
 
 <script>
+import Card from "@/components/Card";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import store from "@/Vuex/store";
 
 export default {
   name: "HelloWorld",
+  components: {
+    Card
+  },
   data() {
     return {
       //Should this changing data be in here?
@@ -25,7 +31,7 @@ export default {
       projectsContent: []
     };
   },
-  created: function() {
+  mounted() {
     this.getProjects();
   },
   methods: {
@@ -78,12 +84,9 @@ a {
   color: #42b983;
 }
 .box-card {
-  text-align: left;
   width: 75%;
-  display: inline-block;
-  margin-top: 30px;
 }
-.projectcards {
-  text-align: center;
+.card-header {
+  padding: 18px 20px;
 }
 </style>
