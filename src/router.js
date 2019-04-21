@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Login from "./views/AuthPage.vue";
 import Projects from "./views/Projects.vue";
+import ProjectInfo from "./views/ProjectInfo.vue";
 
 Vue.use(Router);
 
@@ -23,6 +24,11 @@ export default new Router({
       path: "/projects",
       name: "projects",
       component: Projects
+    },
+    {
+      path: "/projects/:projectID",
+      name: "projectInfo",
+      component: ProjectInfo
     },
     {
       path: "/about",

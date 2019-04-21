@@ -8,7 +8,9 @@ export default new Vuex.Store({
     userName: "",
     userEmail: "",
     userIsAuth: null,
-    loading: false
+    loading: false,
+    //pass through data from one route to another
+    passThrough: null
   },
   mutations: {
     setAuthUser(state, payload) {
@@ -16,6 +18,9 @@ export default new Vuex.Store({
     },
     setUserEmail(state, payload) {
       this.state.userEmail = payload;
+    },
+    setPassThrough(state, payload) {
+      this.state.passThrough = payload;
     },
     loading(state, payload) {
       this.state.loading = payload;

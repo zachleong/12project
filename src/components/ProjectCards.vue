@@ -1,19 +1,20 @@
 <template>
-  <div class="hello">
-    <div class="projectcards" v-if="projectsPopulated">
-      <template v-for="project in projectsContent">
-        <el-card class="box-card" :key="project.id" shadow="hover">
-          <div slot="header">{{ project.title }}</div>
-          <p>{{ project.desc }}</p>
-        </el-card>
-      </template>
-    </div>
+  <div class="projectcards" v-if="projectsPopulated">
+    <template v-for="project in projectsContent">
+      <el-card class="box-card" :key="project.id" shadow="hover">
+        <div slot="header" @click="goToProjectInfo(project)">
+          {{ project.title }}
+        </div>
+        <p>{{ project.desc }}</p>
+      </el-card>
+    </template>
   </div>
 </template>
 
 <script>
 import firebase from "firebase/app";
 import "firebase/firestore";
+import store from "@/Vuex/store";
 
 export default {
   name: "HelloWorld",
@@ -50,6 +51,11 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    goToProjectInfo(projectObj) {
+      store.commit("setPassThrough", projectObj);
+      this.$router.push(`/projects/${projectObj.id}`);
+      console.log("fired");
     }
   }
 };
