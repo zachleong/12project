@@ -1,16 +1,18 @@
 <template>
-  <div class="projectcards" v-if="projects">
-    <template v-for="project in projects">
-      <Card :key="project.id" class="box-card">
-        <template v-slot:header>
-          <div @click="goToProjectInfo(project)" class="card-header">
-            {{ project.title }}
-          </div>
-        </template>
-        <p>{{ project.desc }}</p>
-      </Card>
-    </template>
-  </div>
+  <transition name="pageTrans">
+    <div class="projectcards" v-if="projects">
+      <template v-for="project in projects">
+        <Card :key="project.id" class="box-card">
+          <template v-slot:header>
+            <div @click="goToProjectInfo(project)" class="card-header">
+              {{ project.title }}
+            </div>
+          </template>
+          <p>{{ project.desc }}</p>
+        </Card>
+      </template>
+    </div>
+  </transition>
 </template>
 
 <script>
