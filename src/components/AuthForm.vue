@@ -42,12 +42,13 @@ export default {
           .auth()
           .signInWithEmailAndPassword(this.email, this.password)
           .then(() => {
-            store.commit("loading", false);
             this.$router.push({ name: "home" });
           })
           .catch(error => {
-            store.commit("loading", false);
             console.log(error);
+          })
+          .finally(() => {
+            store.commit("loading", false);
           });
       }
     }
