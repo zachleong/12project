@@ -5,7 +5,8 @@
         <Card :key="project.id" class="box-card">
           <template v-slot:header>
             <div @click="goToProjectInfo(project)" class="card-header">
-              {{ project.title }}
+              <a class="card-title">{{ project.title }}</a>
+              <a class="card-link">More info</a>
             </div>
           </template>
           <p>{{ project.desc }}</p>
@@ -65,13 +66,15 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-a {
-  color: #42b983;
-}
 .box-card {
   width: 75%;
 }
 .card-header {
   padding: 18px 20px;
+  cursor: pointer;
+}
+.card-link {
+  color: #409eff;
+  float: right;
 }
 </style>
