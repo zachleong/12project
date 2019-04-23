@@ -4,20 +4,19 @@
     <input
       type="text"
       v-model="project.projectTitle"
-      placeholder="title"
-      class="input"
+      placeholder="Title"
+      class="input project-in"
     />
     <br />
-    <input
+    <textarea
       type="text"
       v-model="project.projectDesc"
-      placeholder="desc"
-      class="input"
+      placeholder="Project description"
+      class="input project-desc"
     />
     <br />
-    <input type="text" v-model="projectID" placeholder="id" class="input" />
-    <br />
     <button @click="onSubmit" type="primary" class="button">Submit</button>
+    <h1 v-bind="projectIsSet" v-if="projectIsSet">Project added</h1>
   </div>
 </template>
 
@@ -30,14 +29,14 @@ export default {
         projectTitle: "",
         projectDesc: ""
       },
-      projectID: ""
+      projectIsSet: false
     };
   },
   methods: {
     onSubmit() {
       setProject(this.project)
         .then(() => {
-          console.log("set");
+          this.projectIsSet = true;
         })
         .catch(error => {
           console.log(error);
@@ -47,4 +46,14 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.project-in {
+  margin: 10px 0;
+  width: 45%;
+}
+.project-desc {
+  transition: border 0.4s;
+  width: 45%;
+  resize: vertical;
+}
+</style>
