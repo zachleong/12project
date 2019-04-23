@@ -70,7 +70,7 @@ h2 {
   border: 1px solid #409eff;
 }
 ::placeholder {
-  color: #dcdfe6;
+  color: #c0c4cc;
 }
 .pageTrans-leave-active,
 .pageTrans-enter-active {
