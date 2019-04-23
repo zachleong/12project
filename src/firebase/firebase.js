@@ -54,4 +54,8 @@ export const getProjectsFromDB = col => {
       return projects;
     });
 };
+export const setProject = project => {
+  const db = firebase.firestore();
+  return db.collection("Projects").add(project);
+};
 console.log("firebase initialized");

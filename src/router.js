@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 import Login from "./views/AuthPage.vue";
 import Projects from "./views/Projects.vue";
 import ProjectInfo from "./views/ProjectInfo.vue";
+import CreateProject from "./views/CreateProject.vue";
 
 Vue.use(Router);
 
@@ -29,6 +30,11 @@ export default new Router({
       path: "/projects/:projectID",
       name: "projectInfo",
       component: ProjectInfo
+    },
+    {
+      path: "/createproject",
+      name: "createproject",
+      component: CreateProject
     },
     {
       path: "/about",
