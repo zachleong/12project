@@ -44,6 +44,34 @@ h1 {
 h2 {
   font-weight: normal;
 }
+.button {
+  font-size: 16px;
+  font-family: inherit;
+  font-weight: 500;
+  padding: 12px 20px;
+  border: 1px solid #409eff;
+  border-radius: 4px;
+  line-height: 1;
+  box-sizing: border-box;
+  background-color: #409eff;
+  color: white;
+  cursor: pointer;
+}
+.input {
+  font-size: 16px;
+  font-family: inherit;
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  padding: 10px 15px;
+  transition: 0.4s;
+}
+.input:focus {
+  outline: none;
+  border: 1px solid #409eff;
+}
+::placeholder {
+  color: #dcdfe6;
+}
 .pageTrans-leave-active,
 .pageTrans-enter-active {
   transition: opacity 0.2s;

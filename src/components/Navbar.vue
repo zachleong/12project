@@ -6,6 +6,9 @@
       </a>
       <router-link to="/" class="navlink">Home</router-link>
       <router-link to="/projects" class="navlink">Projects</router-link>
+      <router-link to="/createproject" class="navlink"
+        >Create Project</router-link
+      >
       <div id="authButton">
         <el-button
           v-if="userIsAuth === true"
@@ -14,12 +17,14 @@
           plain
           >Sign out</el-button
         >
-        <el-button
+        <button
           v-else-if="userIsAuth === false"
           v-on:click="goToLogin"
           type="primary"
-          >Login</el-button
+          class="button login-button"
         >
+          Login
+        </button>
       </div>
     </div>
   </div>
@@ -100,9 +105,5 @@ export default {
 }
 .center {
   text-align: center;
-}
-.el-button {
-  font-size: 16px;
-  font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
 }
 </style>
