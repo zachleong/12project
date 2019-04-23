@@ -1,14 +1,23 @@
 <template>
   <div>
     <h1>Create a new project</h1>
-    <input type="text" v-model="project.projectTitle" placeholder="title" />
+    <input
+      type="text"
+      v-model="project.projectTitle"
+      placeholder="title"
+      class="input"
+    />
     <br />
-    <input type="text" v-model="project.projectDesc" placeholder="desc" />
+    <input
+      type="text"
+      v-model="project.projectDesc"
+      placeholder="desc"
+      class="input"
+    />
     <br />
-    <input type="text" v-model="projectID" placeholder="id" />
-
+    <input type="text" v-model="projectID" placeholder="id" class="input" />
     <br />
-    <el-button @click="onSubmit" type="primary">Submit</el-button>
+    <button @click="onSubmit" type="primary" class="button">Submit</button>
   </div>
 </template>
 
