@@ -22,9 +22,11 @@ export default {
 </script>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css?family=Nunito:300");
+
 #app {
-  font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
-  font-weight: normal;
+  font-family: "Nunito", sans-serif;
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -38,11 +40,11 @@ body {
   background-color: white;
 }
 h1 {
-  font-weight: normal;
+  font-weight: 300;
 }
 
 h2 {
-  font-weight: normal;
+  font-weight: 300;
 }
 .button {
   font-size: 16px;
