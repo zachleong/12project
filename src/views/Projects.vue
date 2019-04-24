@@ -1,10 +1,10 @@
 <template>
   <div class="projects">
     <h1 class="header">Projects</h1>
-    <el-input
+    <input
       placeholder="Search for projects"
       v-model="searchInput"
-      class="search-input"
+      class="input search-input"
     />
     <ProjectCards />
   </div>

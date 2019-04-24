@@ -14,7 +14,9 @@
         />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">Login</el-button>
+        <button type="primary" @click="e => onSubmit(e)" class="button">
+          Login
+        </button>
       </el-form-item>
     </el-form>
   </div>
@@ -33,7 +35,8 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
+    onSubmit(e) {
+      e.preventDefault();
       if (!this.formIsValid) {
         console.log("form not valid");
       } else {

@@ -59,11 +59,18 @@ h2 {
   color: white;
   cursor: pointer;
 }
+.button:hover {
+  background-color: rgb(102, 177, 255);
+}
+.button:focus {
+  outline: none;
+}
 .input {
   font-size: 16px;
   font-family: inherit;
   border: 1px solid #ebeef5;
   border-radius: 4px;
+  box-sizing: border-box;
   padding: 10px 15px;
   transition: 0.4s;
 }
