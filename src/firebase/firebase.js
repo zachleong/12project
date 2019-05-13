@@ -56,6 +56,7 @@ export const getProjectsFromDB = col => {
 };
 export const setProject = project => {
   const db = firebase.firestore();
+  project.userID = firebase.auth().currentUser.uid;
   return db.collection("Projects").add(project);
 };
 console.log("firebase initialized");
