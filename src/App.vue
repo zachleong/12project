@@ -39,6 +39,9 @@ body {
   margin: 0;
   background-color: white;
 }
+a {
+  outline: 0;
+}
 h1 {
   font-weight: 300;
 }
