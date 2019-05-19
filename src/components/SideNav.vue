@@ -32,7 +32,7 @@ export default {
 .sidenav {
   z-index: 1;
   position: absolute;
-  height: 100vw;
+  height: 100%;
   width: 150px;
   top: 0;
   left: 0;
