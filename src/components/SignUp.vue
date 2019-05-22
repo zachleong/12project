@@ -2,6 +2,12 @@
   <div>
     <h1>Register</h1>
     <el-form>
+      <el-form-item label="Display Name">
+        <el-input
+          placeholder="Who do you want to be known as?"
+          v-model="username"
+        />
+      </el-form-item>
       <el-form-item label="Email">
         <el-input placeholder="Please enter email" v-model="email" />
       </el-form-item>
@@ -29,6 +35,7 @@ export default {
     return {
       email: "",
       password: "",
+      username: "",
       formIsValid: true
     };
   },
@@ -41,7 +48,11 @@ export default {
         firebase
           .auth()
           .createUserWithEmailAndPassword(this.email, this.password)
-          .then(() => {
+          //NOTE: is this the best way to do this?
+          .then(usercred => {
+            usercred.user.updateProfile({
+              displayName: this.username
+            });
             store.commit("loading", false);
             this.$router.push({ name: "home" });
           })
