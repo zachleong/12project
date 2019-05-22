@@ -5,6 +5,7 @@ import Login from "./views/AuthPage.vue";
 import Projects from "./views/Projects.vue";
 import ProjectInfo from "./views/ProjectInfo.vue";
 import CreateProject from "./views/CreateProject.vue";
+import UserProfile from "./views/UserProfile.vue";
 
 Vue.use(Router);
 
@@ -35,6 +36,11 @@ export default new Router({
       path: "/createproject",
       name: "createproject",
       component: CreateProject
+    },
+    {
+      path: "/profile",
+      name: "profile",
+      component: UserProfile
     },
     {
       path: "/about",

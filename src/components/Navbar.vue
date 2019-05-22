@@ -8,14 +8,17 @@
     <router-link to="/createproject" class="navlink"
       >Create Project</router-link
     >
-    <div id="authButton">
-      <el-button
+    <div id="rightContent">
+      <router-link to="/profile" class="navlink" v-if="userIsAuth == true"
+        ><div class="profile-link"></div
+      ></router-link>
+      <!-- <el-button
         v-if="userIsAuth === true"
         v-on:click="signOut"
         type="primary"
         plain
         >Sign out</el-button
-      >
+      > -->
       <button
         v-else-if="userIsAuth === false"
         v-on:click="goToLogin"
@@ -59,6 +62,16 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.profile-link {
+  border: 0;
+  border-radius: 50%;
+  //   padding: 20px;
+  height: 40px;
+  width: 40px;
+  background-color: lightseagreen;
+  line-height: normal;
+  color: white;
+}
 .navlink {
   text-decoration: none;
   padding: 10px 15px 10px 15px;
@@ -86,7 +99,7 @@ export default {
     border-bottom-color: rgba(64, 158, 255, 1);
   }
 }
-#authButton {
+#rightContent {
   float: right;
   line-height: 70px;
   padding: 0 15px 0 15px;
