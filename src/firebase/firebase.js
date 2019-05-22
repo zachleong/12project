@@ -26,7 +26,9 @@ const projectFromDoc = doc => {
   return {
     id: doc.id,
     title: doc.data().projectTitle,
-    desc: doc.data().projectDesc
+    desc: doc.data().projectDesc,
+    userID: doc.data().userID,
+    userName: doc.data().userName
   };
 };
 export const getProjectFromDB = docID => {
@@ -57,6 +59,7 @@ export const getProjectsFromDB = col => {
 export const setProject = project => {
   const db = firebase.firestore();
   project.userID = firebase.auth().currentUser.uid;
+  project.userName = firebase.auth().currentUser.displayName;
   return db.collection("Projects").add(project);
 };
 console.log("firebase initialized");

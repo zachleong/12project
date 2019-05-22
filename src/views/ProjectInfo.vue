@@ -5,6 +5,8 @@
         <div class="card-header">{{ project.title }}</div>
       </template>
       <div>{{ project.desc }}</div>
+      <br />
+      <div v-if="project.userName">Created by {{ project.userName }}</div>
     </Card>
   </div>
 </template>
