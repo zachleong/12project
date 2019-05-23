@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     handleFile(e) {
-      uploadProfilePic(e.target.files[0], e.target.files[0].name);
+      uploadProfilePic(e.target.files[0]);
     }
   },
   computed: {

@@ -69,7 +69,7 @@ export const setProject = project => {
   project.userName = firebase.auth().currentUser.displayName;
   return db.collection("Projects").add(project);
 };
-export const uploadProfilePic = (file, filename) => {
+export const uploadProfilePic = file => {
   const storage = firebase.storage();
   const storageRef = storage.ref();
   const newfilename = firebase.auth().currentUser.displayName;
