@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     userName: "",
     userEmail: "",
+    userPictureURL: "",
     userIsAuth: null,
     loading: false,
     //pass through data from one route to another
@@ -18,6 +19,12 @@ export default new Vuex.Store({
     },
     setUserEmail(state, payload) {
       this.state.userEmail = payload;
+    },
+    setUserPictureURL(state, payload) {
+      this.state.userPictureURL = payload;
+    },
+    setUserName(state, payload) {
+      this.state.userName = payload;
     },
     setPassThrough(state, payload) {
       this.state.passThrough = payload;

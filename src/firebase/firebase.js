@@ -3,6 +3,8 @@ import store from "@/Vuex/store";
 
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
+
 const config = {
   apiKey: "AIzaSyCBOySSw3riF7HEgU2rJgp4aONEvxZhwsk",
   authDomain: "vue-firebase-4cc1a.firebaseapp.com",
@@ -17,6 +19,11 @@ firebase.auth().onAuthStateChanged(user => {
     console.log(`user is ${user.email}`);
     store.commit("setAuthUser", true);
     store.commit("setUserEmail", user.email);
+    store.commit("setUserName", user.displayName);
+    getProfilePictureURL().then(url => {
+      store.commit("setUserPictureURL", url);
+    });
+    // store.commit("setUserPictureURL", user.photoURL);
   } else {
     console.log("not signed in");
     store.commit("setAuthUser", false);
@@ -61,5 +68,11 @@ export const setProject = project => {
   project.userID = firebase.auth().currentUser.uid;
   project.userName = firebase.auth().currentUser.displayName;
   return db.collection("Projects").add(project);
+};
+export const getProfilePictureURL = () => {
+  const storage = firebase.storage();
+  const storageRef = storage.ref();
+  const imageRef = storageRef.child("profilepic.png");
+  return imageRef.getDownloadURL();
 };
 console.log("firebase initialized");
