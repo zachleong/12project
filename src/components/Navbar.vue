@@ -8,7 +8,7 @@
     <router-link to="/createproject" class="navlink"
       >Create Project</router-link
     >
-    <div id="rightContent">
+    <div class="rightContent">
       <router-link to="/profile" class="navlink" v-if="userIsAuth == true"
         ><span class="profile-link"
           ><img
@@ -107,10 +107,10 @@ export default {
     border-bottom-color: rgba(64, 158, 255, 1);
   }
 }
-#rightContent {
+.rightContent {
   float: right;
   line-height: 70px;
-  padding: 0 15px 0 15px;
+  padding: 0 10px 0 10px;
 }
 .navbar {
   position: sticky;
