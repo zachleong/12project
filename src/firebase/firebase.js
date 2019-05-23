@@ -72,7 +72,10 @@ export const setProject = project => {
 export const uploadProfilePic = (file, filename) => {
   const storage = firebase.storage();
   const storageRef = storage.ref();
-  const fileRef = storageRef.child(`profilePictures/${filename}`);
+  const newfilename = firebase.auth().currentUser.displayName;
+  const ext = filename.split(".").pop();
+  // NOTE: Make sure there are no xss or similiar vulnerabitlies here
+  const fileRef = storageRef.child(`profilePictures/${newfilename}.${ext}`);
   fileRef
     .put(file)
     .then(() => {
