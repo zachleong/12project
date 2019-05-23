@@ -1,7 +1,9 @@
 <template>
   <div>
     <h1>Here is the profile page</h1>
-    <img v-bind:src="imgurl" alt="profile picture" />
+    <div class="profile-div">
+      <img v-bind:src="imgurl" alt="profile picture" class="profile-picture" />
+    </div>
     <input type="file" @change="handleFile($event)" />
   </div>
 </template>
@@ -27,4 +29,16 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.profile-div {
+  height: 45px;
+  width: 45px;
+  overflow: hidden;
+  display: inline-block;
+}
+.profile-picture {
+  border-radius: 50%;
+  max-width: 45px;
+  height: 45px;
+}
+</style>

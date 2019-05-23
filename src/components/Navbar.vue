@@ -10,7 +10,11 @@
     >
     <div id="rightContent">
       <router-link to="/profile" class="navlink" v-if="userIsAuth == true"
-        ><div class="profile-link"></div
+        ><span class="profile-link"
+          ><img
+            v-bind:src="imgurl"
+            alt="Profile Picture"
+            class="profile-picture"/></span
       ></router-link>
       <!-- <el-button
         v-if="userIsAuth === true"
@@ -39,6 +43,9 @@ export default {
   computed: {
     userIsAuth: () => {
       return store.state.userIsAuth;
+    },
+    imgurl() {
+      return store.state.userPictureURL;
     }
   },
   methods: {
@@ -63,14 +70,15 @@ export default {
 </script>
 <style lang="scss" scoped>
 .profile-link {
-  border: 0;
+  height: 45px;
+  width: 45px;
+  overflow: hidden;
+  display: inline-block;
+}
+.profile-picture {
   border-radius: 50%;
-  //   padding: 20px;
-  height: 40px;
-  width: 40px;
-  background-color: lightseagreen;
-  line-height: normal;
-  color: white;
+  max-width: 45px;
+  height: 45px;
 }
 .navlink {
   text-decoration: none;
