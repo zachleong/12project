@@ -90,9 +90,13 @@ export default {
   top: 60px;
   width: 150px;
   height: 100px;
-  right: 10px;
+  //   right: 10px;
+  right: 0;
   z-index: -1;
-  background-color: lightblue;
+  background-color: white;
+  -webkit-box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
 }
 .profile-link {
   height: 45px;
@@ -138,6 +142,7 @@ export default {
   padding: 0 10px 0 10px;
 }
 .navbar {
+  //NOTE: Had to be done to have drop down because position sticky creates new stacking context?
   position: relative;
   top: 0;
   width: 100%;
