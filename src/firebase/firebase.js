@@ -20,7 +20,7 @@ firebase.auth().onAuthStateChanged(user => {
     store.commit("setAuthUser", true);
     store.commit("setUserEmail", user.email);
     store.commit("setUserName", user.displayName);
-    getProfilePictureURL().then(url => {
+    getProfilePictureURL(user.displayName).then(url => {
       store.commit("setUserPictureURL", url);
     });
     // store.commit("setUserPictureURL", user.photoURL);
@@ -73,9 +73,9 @@ export const uploadProfilePic = (file, filename) => {
   const storage = firebase.storage();
   const storageRef = storage.ref();
   const newfilename = firebase.auth().currentUser.displayName;
-  const ext = filename.split(".").pop();
   // NOTE: Make sure there are no xss or similiar vulnerabitlies here
-  const fileRef = storageRef.child(`profilePictures/${newfilename}.${ext}`);
+  // Also usernames may be duplicate
+  const fileRef = storageRef.child(`profilePictures/${newfilename}`);
   fileRef
     .put(file)
     .then(() => {
@@ -85,10 +85,10 @@ export const uploadProfilePic = (file, filename) => {
       console.log("file didn't upload");
     });
 };
-export const getProfilePictureURL = () => {
+export const getProfilePictureURL = username => {
   const storage = firebase.storage();
   const storageRef = storage.ref();
-  const imageRef = storageRef.child("profilepic.png");
+  const imageRef = storageRef.child(`profilePictures/${username}`);
   return imageRef.getDownloadURL();
 };
 console.log("firebase initialized");
