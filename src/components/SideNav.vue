@@ -30,7 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 .sidenav {
-  z-index: 1;
+  z-index: -1;
   position: absolute;
   height: 100%;
   width: 150px;

@@ -10,12 +10,16 @@
     >
     <div class="rightContent">
       <router-link to="/profile" class="navlink" v-if="userIsAuth == true"
-        ><span class="profile-link"
+        ><span class="profile-link" @click="toggleDrop"
           ><img
             v-bind:src="imgurl"
             alt="Profile Picture"
-            class="profile-picture"/></span
-      ></router-link>
+            class="profile-picture"
+        /></span>
+        <ul class="dropdown" v-if="showDropdown">
+          Hey there
+        </ul>
+      </router-link>
       <!-- <el-button
         v-if="userIsAuth === true"
         v-on:click="signOut"
@@ -40,6 +44,11 @@ import store from "@/Vuex/store";
 import firebase from "firebase/app";
 import "firebase/auth";
 export default {
+  data() {
+    return {
+      showDropdown: true
+    };
+  },
   computed: {
     userIsAuth: () => {
       return store.state.userIsAuth;
@@ -49,6 +58,9 @@ export default {
     }
   },
   methods: {
+    toggleDrop() {
+      this.showDropdown = !this.showDropdown;
+    },
     signOut() {
       firebase
         .auth()
@@ -69,6 +81,19 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.dropdown {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+  top: 60px;
+  width: 150px;
+  height: 100px;
+  right: 10px;
+  z-index: -1;
+  background-color: lightblue;
+}
 .profile-link {
   height: 45px;
   width: 45px;
@@ -113,14 +138,14 @@ export default {
   padding: 0 10px 0 10px;
 }
 .navbar {
-  position: sticky;
+  position: relative;
   top: 0;
   width: 100%;
   //   height: 70px;
   display: inline-block;
   -webkit-box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
-  z-index: 2;
+  //   z-index: 2;
   background-color: white;
 }
 .center {
