@@ -69,6 +69,19 @@ export const setProject = project => {
   project.userName = firebase.auth().currentUser.displayName;
   return db.collection("Projects").add(project);
 };
+export const uploadProfilePic = (file, filename) => {
+  const storage = firebase.storage();
+  const storageRef = storage.ref();
+  const fileRef = storageRef.child(`profilePictures/${filename}`);
+  fileRef
+    .put(file)
+    .then(() => {
+      console.log("file uploaded");
+    })
+    .catch(() => {
+      console.log("file didn't upload");
+    });
+};
 export const getProfilePictureURL = () => {
   const storage = firebase.storage();
   const storageRef = storage.ref();
