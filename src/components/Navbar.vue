@@ -9,14 +9,18 @@
       >Create Project</router-link
     >
     <div class="rightContent">
-      <router-link to="/profile" class="navlink" v-if="userIsAuth == true"
-        ><span class="profile-link" @click="toggleDrop"
+      <router-link
+        to="/profile"
+        class="navlink profile-nav"
+        v-if="userIsAuth == true"
+        ><span class="profile-link"
           ><img
             v-bind:src="imgurl"
             alt="Profile Picture"
             class="profile-picture"
-        /></span>
-        <ul class="dropdown" v-if="showDropdown">
+          />
+        </span>
+        <ul class="dropdown">
           Hey there
         </ul>
       </router-link>
@@ -87,16 +91,19 @@ export default {
   display: inline-block;
   position: absolute;
   text-align: center;
-  top: 60px;
+  top: -100%;
   width: 150px;
   height: 100px;
-  //   right: 10px;
   right: 0;
   z-index: -1;
   background-color: white;
   -webkit-box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
   border-radius: 4px;
+  transition-duration: 0.4s;
+}
+.profile-nav:focus .dropdown {
+  top: 70px;
 }
 .profile-link {
   height: 45px;
