@@ -29,6 +29,19 @@ firebase.auth().onAuthStateChanged(user => {
     store.commit("setAuthUser", false);
   }
 });
+export const signOut = () => {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      console.log("logged out");
+      store.commit("setAuthUser", false);
+      store.commit("setUserEmail", "");
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
 const projectFromDoc = doc => {
   return {
     id: doc.id,

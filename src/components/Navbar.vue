@@ -1,56 +1,67 @@
 <template>
-  <div class="navbar">
-    <a class="brand navlink">
-      <h2>Git Money</h2>
-    </a>
-    <router-link to="/" class="navlink">Home</router-link>
-    <router-link to="/projects" class="navlink">Projects</router-link>
-    <router-link to="/createproject" class="navlink"
-      >Create Project</router-link
-    >
-    <div class="rightContent">
-      <router-link
-        to="/profile"
-        class="navlink profile-nav"
-        v-if="userIsAuth == true"
-        ><span class="profile-link"
-          ><img
-            v-bind:src="imgurl"
-            alt="Profile Picture"
-            class="profile-picture"
-          />
+  <div>
+    <!-- dropdown needs to be outside of navbar because of z-indedx cooks -->
+    <transition name="drop">
+      <ul
+        class="dropdown"
+        v-if="showDropdown"
+        @mouseleave="showDropdown = false"
+      >
+        <li class="dropdown-el" @click="signout">
+          Hey There
+        </li>
+      </ul>
+    </transition>
+    <div class="navbar">
+      <a class="brand navlink">
+        <h2>Git Money</h2>
+      </a>
+      <router-link to="/" class="navlink">Home</router-link>
+      <router-link to="/projects" class="navlink">Projects</router-link>
+      <router-link to="/createproject" class="navlink"
+        >Create Project</router-link
+      >
+      <div class="rightContent">
+        <span
+          class="profile-dropdown"
+          v-if="userIsAuth == true"
+          @click="showDropdown = true"
+        >
+          <span class="profile-overflow"
+            ><img
+              v-bind:src="imgurl"
+              alt="Profile Picture"
+              class="profile-picture"
+            />
+          </span>
         </span>
-        <ul class="dropdown">
-          Hey there
-        </ul>
-      </router-link>
-      <!-- <el-button
+        <!-- <el-button
         v-if="userIsAuth === true"
         v-on:click="signOut"
         type="primary"
         plain
         >Sign out</el-button
       > -->
-      <button
-        v-else-if="userIsAuth === false"
-        v-on:click="goToLogin"
-        type="primary"
-        class="button login-button"
-      >
-        Login
-      </button>
+        <button
+          v-else-if="userIsAuth === false"
+          v-on:click="goToLogin"
+          type="primary"
+          class="button login-button"
+        >
+          Login
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import store from "@/Vuex/store";
-import firebase from "firebase/app";
-import "firebase/auth";
+import { signOut } from "@/firebase/firebase";
 export default {
   data() {
     return {
-      showDropdown: true
+      showDropdown: false
     };
   },
   computed: {
@@ -59,24 +70,25 @@ export default {
     },
     imgurl() {
       return store.state.userPictureURL;
+    },
+    isDrop: () => {
+      return this.showDropdown;
     }
   },
   methods: {
+    enter() {
+      console.log("enter");
+    },
+    leave() {
+      console.log("levae");
+    },
     toggleDrop() {
       this.showDropdown = !this.showDropdown;
+      //   console.log("toggle");
     },
-    signOut() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          console.log("logged out");
-          store.commit("setAuthUser", false);
-          store.commit("setUserEmail", "");
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    signout() {
+      //   console.log("singing out");
+      signOut();
     },
     goToLogin() {
       this.$router.push({ name: "login" });
@@ -85,27 +97,48 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.drop-leave-active,
+.drop-enter-active {
+  transition: opacity 0.4s;
+}
+.drop-enter,
+.drop-leave-to {
+  opacity: 0;
+}
+.dropdown-el {
+  list-style: none;
+  float: left;
+  padding-left: 15px;
+  background-color: lightblue;
+}
 .dropdown {
   padding: 0;
   margin: 0;
   display: inline-block;
   position: absolute;
   text-align: center;
-  top: -100%;
+  top: 70px;
   width: 150px;
-  height: 100px;
+  height: 150px;
   right: 0;
-  z-index: -1;
   background-color: white;
   -webkit-box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  transition-duration: 0.4s;
+  border-bottom-left-radius: 10px;
 }
-.profile-nav:focus .dropdown {
-  top: 70px;
+.profile-dropdown {
+  text-decoration: none;
+  font: inherit;
+  box-sizing: inherit;
+  //   border: 4px solid black;
+  padding: 10px 15px 10px 15px;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  height: 51px;
+  float: left;
 }
-.profile-link {
+.profile-overflow {
   height: 45px;
   width: 45px;
   overflow: hidden;
@@ -157,7 +190,7 @@ export default {
   display: inline-block;
   -webkit-box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
-  //   z-index: 2;
+  z-index: 2;
   background-color: white;
 }
 .center {
