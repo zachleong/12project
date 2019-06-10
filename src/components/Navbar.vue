@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- dropdown needs to be outside of navbar because of z-indedx cooks -->
+    <!-- dropdown needs to be outside of navbar because of z-index cooks -->
     <transition name="drop">
       <ul
         class="dropdown"
@@ -8,14 +8,21 @@
         @mouseleave="showDropdown = false"
       >
         <li class="dropdown-el" @click="signout">
-          Hey There
+          Sign Out
         </li>
       </ul>
     </transition>
     <div class="navbar">
-      <a class="brand navlink">
+      <!-- <a class="brand navlink">
         <h2>Git Money</h2>
-      </a>
+      </a> -->
+      <img
+        width="45px"
+        height="45px"
+        src="../assets/logo.svg"
+        alt="logo"
+        class="brand navlink"
+      />
       <router-link to="/" class="navlink">Home</router-link>
       <router-link to="/projects" class="navlink">Projects</router-link>
       <router-link to="/createproject" class="navlink"
@@ -107,9 +114,8 @@ export default {
 }
 .dropdown-el {
   list-style: none;
-  float: left;
-  padding-left: 15px;
-  background-color: lightblue;
+  text-align: center;
+  padding: 15px;
 }
 .dropdown {
   padding: 0;
