@@ -6,12 +6,13 @@ import "firebase/firestore";
 import "firebase/storage";
 
 const config = {
-  apiKey: "AIzaSyCBOySSw3riF7HEgU2rJgp4aONEvxZhwsk",
-  authDomain: "vue-firebase-4cc1a.firebaseapp.com",
-  databaseURL: "https://vue-firebase-4cc1a.firebaseio.com",
-  projectId: "vue-firebase-4cc1a",
-  storageBucket: "vue-firebase-4cc1a.appspot.com",
-  messagingSenderId: "809699793301"
+  apiKey: "AIzaSyAFMLuPW-jG0k0Og6G-3UzzjFDgNhDe7YM",
+  authDomain: "zach-leong.firebaseapp.com",
+  databaseURL: "https://zach-leong.firebaseio.com",
+  projectId: "zach-leong",
+  storageBucket: "zach-leong.appspot.com",
+  messagingSenderId: "229419443686",
+  appId: "1:229419443686:web:3deecbdb5411a9cb"
 };
 firebase.initializeApp(config);
 firebase.auth().onAuthStateChanged(user => {
