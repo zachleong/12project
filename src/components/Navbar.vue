@@ -10,6 +10,9 @@
         <li class="dropdown-el" @click="signout">
           Sign Out
         </li>
+        <li class="dropdown-el">
+          <router-link to="/profile">Profiles</router-link>
+        </li>
       </ul>
     </transition>
     <div class="navbar">
@@ -115,7 +118,12 @@ export default {
 .dropdown-el {
   list-style: none;
   text-align: center;
+  //   text-decoration: none;
+  color: black;
   padding: 15px;
+}
+.dropdown-el:hover {
+  cursor: pointer;
 }
 .dropdown {
   padding: 0;
@@ -144,6 +152,9 @@ export default {
   height: 51px;
   float: left;
 }
+.profile-dropdown:hover {
+  cursor: pointer;
+}
 .profile-overflow {
   height: 45px;
   width: 45px;
@@ -167,6 +178,7 @@ export default {
 .brand {
   padding-right: 20px;
   padding-left: 20px;
+  margin-top: 2px;
 }
 .router-link-exact-active {
   //   background: rgba(255, 255, 255, 0.8);

@@ -1,15 +1,7 @@
 <template>
   <div>
-    <h1>Here is the profile page</h1>
-    <div class="profile-div">
-      <img v-bind:src="imgurl" alt="profile picture" class="profile-picture" />
-    </div>
-    <input type="file" @change="handleFile($event)" />
-    <div class="divil" @click="show = !show"></div>
-    <transition name="fade">
-      <!-- <div v-if="show" class="divi"></div> -->
-      <p v-if="show" class="divi">Hello</p>
-    </transition>
+    <h2>Upload profile picture:</h2>
+    <input class="file-upload" type="file" @change="handleFile($event)" />
   </div>
 </template>
 <script>
@@ -36,33 +28,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.divil {
-  width: 50px;
-  height: 50px;
-  background-color: red;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-.divi {
-  width: 50px;
-  height: 50px;
-  background-color: blue;
-}
-.profile-div {
-  height: 45px;
-  width: 45px;
-  overflow: hidden;
-  display: inline-block;
-}
-.profile-picture {
-  border-radius: 50%;
-  max-width: 45px;
-  height: 45px;
+input[type="file"] {
+  border: 1px solid;
+  border: none;
 }
 </style>
