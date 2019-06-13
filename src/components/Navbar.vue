@@ -11,7 +11,7 @@
           Sign Out
         </li>
         <li class="dropdown-el">
-          <router-link to="/profile">Profiles</router-link>
+          <router-link to="/profile">Profile</router-link>
         </li>
       </ul>
     </transition>
@@ -42,6 +42,7 @@
               v-bind:src="imgurl"
               alt="Profile Picture"
               class="profile-picture"
+              v-if="imgurl"
             />
           </span>
         </span>
@@ -156,13 +157,14 @@ export default {
   cursor: pointer;
 }
 .profile-overflow {
-  height: 45px;
-  width: 45px;
+  height: 47px;
+  width: 47px;
   overflow: hidden;
   display: inline-block;
 }
 .profile-picture {
   border-radius: 50%;
+  border: 1px solid #ebeef5;
   max-width: 45px;
   height: 45px;
 }
