@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <h1 v-if="userName">Welcome back, {{ userName }}</h1>
+    <!-- NOTE - Shows this if logged in and waiting, might be possible fix -->
     <template v-else>
       <div class="center">
         <div class="landing-content">
