@@ -2,10 +2,10 @@
   <div>
     <div class="project-info" v-if="project">
       <div v-if="project">
-        <div class="project-title">
-          <h1>{{ project.title }}</h1>
+        <div class="project-header">
+          <h1 class="project-title">{{ project.title }}</h1>
           <div class="project-author">
-            Created by {{ project.userName }}
+            Project owned by {{ project.userName }}
             <span class="profile-overflow" v-if="profilePicURL">
               <img
                 :src="profilePicURL"
@@ -88,6 +88,12 @@ export default {
   left: 15px;
 }
 .project-title {
+  text-align: left;
+  border-bottom: 1px solid #ebeef5;
+  padding-bottom: 10px;
+  width: 100%;
+}
+.project-header {
   float: left;
 }
 .profile-overflow {
