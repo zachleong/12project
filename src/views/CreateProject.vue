@@ -7,7 +7,6 @@
       placeholder="Title"
       class="input project-in"
     />
-    <br />
     <textarea
       type="text"
       v-model="project.projectDesc"
@@ -49,11 +48,12 @@ export default {
 <style lang="scss" scoped>
 .project-in {
   margin: 10px 0;
-  width: 45%;
+  width: 65%;
 }
 .project-desc {
   transition: border 0.4s;
-  width: 45%;
+  width: 65%;
+  height: 200px;
   resize: vertical;
 }
 </style>
