@@ -6,6 +6,7 @@
           <h1 class="project-title">{{ project.title }}</h1>
           <div class="project-author">
             Project owned by {{ project.userName }}
+            <!-- TODO - Add else here for when profile pic hasn't loaded yet -->
             <span class="profile-overflow" v-if="profilePicURL">
               <img
                 :src="profilePicURL"
@@ -85,11 +86,11 @@ export default {
 .project-author {
   text-align: left;
   position: relative;
-  left: 15px;
+  left: 20px;
 }
 .project-title {
   text-align: left;
-  border-bottom: 1px solid #ebeef5;
+  border-bottom: 2px solid #ebeef5;
   padding-bottom: 10px;
   width: 100%;
 }
@@ -101,7 +102,7 @@ export default {
   width: 27px;
   overflow: hidden;
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: bottom;
 }
 .profile-picture {
   border-radius: 50%;
