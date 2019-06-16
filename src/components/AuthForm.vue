@@ -17,6 +17,10 @@
         <button type="primary" @click="e => onSubmit(e)" class="button">
           Login
         </button>
+        <br />
+        <button @click="e => googleSignin(e)" class="button google-but">
+          Login with Google
+        </button>
       </el-form-item>
     </el-form>
   </div>
@@ -26,6 +30,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import store from "@/Vuex/store";
+// import { googleLogin } from "@/firebase/firebase";
 export default {
   data() {
     return {
@@ -54,7 +59,32 @@ export default {
             store.commit("loading", false);
           });
       }
+    },
+    googleSignin(e) {
+      e.preventDefault();
+      const googleProvider = new firebase.auth.GoogleAuthProvider();
+      firebase
+        .auth()
+        .signInWithRedirect(googleProvider)
+        .then(() => {
+          this.$router.push({ name: "home" });
+        })
+        .catch(error => {
+          console.log(error.message);
+        });
     }
   }
 };
 </script>
+<style lang="scss" scoped>
+.google-but {
+  background-color: #42b983;
+  border: none;
+  display: inline-block;
+  // TODO - add more padding to match login button
+  margin-top: 15px;
+}
+.google-but:hover {
+  background-color: #69c99e;
+}
+</style>

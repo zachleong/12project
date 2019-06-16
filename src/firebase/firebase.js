@@ -30,6 +30,10 @@ firebase.auth().onAuthStateChanged(user => {
     store.commit("setAuthUser", false);
   }
 });
+export const googleLogin = () => {
+  const googleProvider = new firebase.auth.GoogleAuthProvider();
+  return firebase.auth().signInWithPopup(googleProvider);
+};
 export const signOut = () => {
   firebase
     .auth()
