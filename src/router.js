@@ -6,6 +6,7 @@ import Projects from "./views/Projects.vue";
 import ProjectInfo from "./views/ProjectInfo.vue";
 import CreateProject from "./views/CreateProject.vue";
 import UserProfile from "./views/UserProfile.vue";
+import store from "@/Vuex/store";
 
 Vue.use(Router);
 
@@ -40,7 +41,14 @@ export default new Router({
     {
       path: "/profile",
       name: "profile",
-      component: UserProfile
+      component: UserProfile,
+      beforeEnter: (to, from, next) => {
+        if (store.state.userIsAuth) {
+          next();
+        } else {
+          next({ name: "home" });
+        }
+      }
     },
     {
       path: "/about",
