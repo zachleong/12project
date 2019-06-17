@@ -28,9 +28,12 @@
       />
       <router-link to="/" class="navlink">Home</router-link>
       <router-link to="/projects" class="navlink">Projects</router-link>
-      <router-link to="/createproject" class="navlink"
-        >Create Project</router-link
-      >
+      <template v-if="userIsAuth">
+        <router-link to="/createproject" class="navlink"
+          >Create Project</router-link
+        >
+        <router-link to="/myprojects" class="navlink">My Projects</router-link>
+      </template>
       <div class="rightContent">
         <span
           class="profile-dropdown"

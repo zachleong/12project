@@ -21,11 +21,13 @@ firebase.auth().onAuthStateChanged(user => {
     store.commit("setAuthUser", true);
     store.commit("setUserEmail", user.email);
     store.commit("setUserName", user.displayName);
+    store.commit("setUserID", user.uid);
     getProfilePictureURL(user.displayName).then(url => {
       store.commit("setUserPictureURL", url);
     });
     // store.commit("setUserPictureURL", user.photoURL);
   } else {
+    //   Store should be cleared on sign out
     console.log("not signed in");
     store.commit("setAuthUser", false);
   }
@@ -67,6 +69,7 @@ export const getProjectFromDB = docID => {
       return newproject;
     });
 };
+// NOTE - Why is this function specific to the collection, it's projects?
 export const getProjectsFromDB = col => {
   const db = firebase.firestore();
   return db
@@ -81,6 +84,22 @@ export const getProjectsFromDB = col => {
       return projects;
     });
 };
+export const getUserProjects = uid => {
+  const db = firebase.firestore();
+  return db
+    .collection("Projects")
+    .where("userID", "==", "meN2ZOS2L6c16q3v71MlmUk7jWw1")
+    .get()
+    .then(docs => {
+      const projects = [];
+      docs.forEach(doc => {
+        const newproject = projectFromDoc(doc);
+        projects.push(newproject);
+      });
+      return projects;
+    });
+};
+
 export const setProject = project => {
   const db = firebase.firestore();
   project.userID = firebase.auth().currentUser.uid;
@@ -108,5 +127,10 @@ export const getProfilePictureURL = username => {
   const storageRef = storage.ref();
   const imageRef = storageRef.child(`profilePictures/${username}`);
   return imageRef.getDownloadURL();
+};
+export const waitForAuth = func => {
+  firebase.auth().onAuthStateChanged(user => {
+    func(user);
+  });
 };
 console.log("firebase initialized");

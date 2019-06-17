@@ -5,6 +5,7 @@ import Login from "./views/AuthPage.vue";
 import Projects from "./views/Projects.vue";
 import ProjectInfo from "./views/ProjectInfo.vue";
 import CreateProject from "./views/CreateProject.vue";
+import MyProjects from "./views/MyProjects.vue";
 import UserProfile from "./views/UserProfile.vue";
 import store from "@/Vuex/store";
 
@@ -37,6 +38,18 @@ export default new Router({
       path: "/createproject",
       name: "createproject",
       component: CreateProject,
+      beforeEnter: (to, from, next) => {
+        if (store.state.userIsAuth) {
+          next();
+        } else {
+          next({ name: "home" });
+        }
+      }
+    },
+    {
+      path: "/myprojects",
+      name: "myprojects",
+      component: MyProjects,
       beforeEnter: (to, from, next) => {
         if (store.state.userIsAuth) {
           next();
