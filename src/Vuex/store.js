@@ -8,12 +8,16 @@ export default new Vuex.Store({
     userName: "",
     userEmail: "",
     userPictureURL: "",
+    userID: "",
     userIsAuth: null,
     loading: false,
     //pass through data from one route to another
     passThrough: null
   },
   mutations: {
+    setUserID(state, payload) {
+      this.state.userID = payload;
+    },
     setAuthUser(state, payload) {
       this.state.userIsAuth = payload;
     },
