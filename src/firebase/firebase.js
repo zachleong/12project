@@ -88,7 +88,7 @@ export const getUserProjects = uid => {
   const db = firebase.firestore();
   return db
     .collection("Projects")
-    .where("userID", "==", "meN2ZOS2L6c16q3v71MlmUk7jWw1")
+    .where("userID", "==", uid)
     .get()
     .then(docs => {
       const projects = [];
