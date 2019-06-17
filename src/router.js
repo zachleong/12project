@@ -36,7 +36,14 @@ export default new Router({
     {
       path: "/createproject",
       name: "createproject",
-      component: CreateProject
+      component: CreateProject,
+      beforeEnter: (to, from, next) => {
+        if (store.state.userIsAuth) {
+          next();
+        } else {
+          next({ name: "home" });
+        }
+      }
     },
     {
       path: "/profile",
