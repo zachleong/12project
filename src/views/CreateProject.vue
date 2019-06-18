@@ -14,7 +14,9 @@
       class="input project-desc"
     />
     <br />
-    <button @click="onSubmit" type="primary" class="button">Submit</button>
+    <button @click="onSubmit" type="primary" class="button">
+      Create Project
+    </button>
     <h1 v-bind="projectIsSet" v-if="projectIsSet">Project added</h1>
   </div>
 </template>
