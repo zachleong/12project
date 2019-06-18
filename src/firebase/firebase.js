@@ -100,11 +100,25 @@ export const getUserProjects = uid => {
     });
 };
 
+// TODO makes these function names better
 export const setProject = project => {
   const db = firebase.firestore();
   project.userID = firebase.auth().currentUser.uid;
   project.userName = firebase.auth().currentUser.displayName;
   return db.collection("Projects").add(project);
+};
+export const updateProject = project => {
+  const db = firebase.firestore();
+  const _project = {
+    projectDesc: project.desc,
+    projectTitle: project.title,
+    userID: firebase.auth().currentUser.uid,
+    userName: firebase.auth().currentUser.displayName
+  };
+  return db
+    .collection("Projects")
+    .doc(project.id)
+    .set(_project);
 };
 export const uploadProfilePic = file => {
   const storage = firebase.storage();

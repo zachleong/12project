@@ -18,23 +18,30 @@
       <button @click="onSubmit" type="primary" class="button save-button">
         Save
       </button>
+      <h2 v-if="projectSaved">Project Saved</h2>
     </div>
   </div>
 </template>
 <script>
 import store from "@/Vuex/store";
 import { getProjectFromDB } from "@/firebase/firebase";
+import { updateProject } from "@/firebase/firebase";
 export default {
   data() {
     return {
-      project: null
+      project: null,
+      projectSaved: false
     };
   },
   mounted() {
     this.setProject();
   },
   methods: {
-    onSubmit() {},
+    onSubmit() {
+      updateProject(this.project).then(() => {
+        this.projectSaved = true;
+      });
+    },
     setProject() {
       const passThrough = store.state.passThrough;
       // TODO add profile picture to passthrough
