@@ -15,6 +15,7 @@
       <button @click="saveProfile" type="primary" class="button save-button">
         Save Profile
       </button>
+      <a v-if="saved">Saved</a>
       <div class="about">
         <div class="about-header">
           <h2 class="about-me-tag">About me:</h2>
@@ -42,7 +43,8 @@ export default {
     return {
       file: "",
       username: store.state.userName,
-      user: {}
+      user: {},
+      saved: false
     };
   },
   mounted() {
@@ -51,12 +53,14 @@ export default {
   methods: {
     saveProfile() {
       updateUser(this.user).then(() => {
-        console.log("saved");
+        this.saved = true;
       });
     },
     getInfo() {
       getMyInfo().then(user => {
-        this.user = user;
+        if (user) {
+          this.user = user;
+        }
       });
     },
     handleFile(e) {

@@ -40,7 +40,9 @@ export default {
     },
     getUser() {
       getMyInfo().then(user => {
-        this.user = user;
+        if (user) {
+          this.user = user;
+        }
       });
     }
   },
