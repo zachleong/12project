@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 import Login from "./views/AuthPage.vue";
 import Projects from "./views/Projects.vue";
 import ProjectInfo from "./views/ProjectInfo.vue";
+import ProjectEdit from "./views/ProjectEdit.vue";
 import CreateProject from "./views/CreateProject.vue";
 import MyProjects from "./views/MyProjects.vue";
 import UserProfile from "./views/UserProfile.vue";
@@ -57,6 +58,11 @@ export default new Router({
           next({ name: "home" });
         }
       }
+    },
+    {
+      path: "/myprojects/:projectID",
+      name: "projectEdit",
+      component: ProjectEdit
     },
     {
       path: "/profile",

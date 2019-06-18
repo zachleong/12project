@@ -5,7 +5,7 @@
       <template class="projects" v-for="project in projects">
         <Card :key="project.id" class="box-card">
           <template v-slot:header>
-            <div @click="gotToProjectEdit(project)" class="card-header">
+            <div @click="goToProjectEdit(project)" class="card-header">
               <a class="card-title">{{ project.title }}</a>
               <a class="card-link">Edit</a>
             </div>
@@ -51,7 +51,7 @@ export default {
   methods: {
     goToProjectEdit(projectObj) {
       store.commit("setPassThrough", projectObj);
-      this.$router.push(`/projects/${projectObj.id}`);
+      this.$router.push(`/myprojects/${projectObj.id}`);
     }
   }
 };
