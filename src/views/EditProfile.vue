@@ -1,0 +1,116 @@
+<template>
+  <div>
+    <div class="title">
+      <span class="profile-overflow"
+        ><img
+          :src="imgurl"
+          alt="Profile Picture"
+          class="profile-picture"
+          v-if="imgurl"
+        />
+      </span>
+      <h1 class="username">{{ username }}</h1>
+    </div>
+    <div class="edit-content">
+      <button @click="saveProfile" type="primary" class="button save-button">
+        Save Profile
+      </button>
+      <div class="about">
+        <div class="about-header">
+          <h2 class="about-me-tag">About me:</h2>
+        </div>
+        <textarea
+          type="text"
+          v-model="user.about"
+          placeholder="Write something about yourself"
+          class="input user-desc"
+        ></textarea>
+      </div>
+    </div>
+    <h2>Upload profile picture:</h2>
+    <input class="file-upload" type="file" @change="handleFile($event)" />
+  </div>
+</template>
+
+<script>
+import { uploadProfilePic } from "@/firebase/firebase";
+import { getMyInfo } from "@/firebase/firebase";
+import { updateUser } from "@/firebase/firebase";
+import store from "@/Vuex/store";
+export default {
+  data() {
+    return {
+      file: "",
+      username: store.state.userName,
+      user: {}
+    };
+  },
+  mounted() {
+    this.getInfo();
+  },
+  methods: {
+    saveProfile() {
+      updateUser(this.user).then(() => {
+        console.log("saved");
+      });
+    },
+    getInfo() {
+      getMyInfo().then(user => {
+        this.user = user;
+      });
+    },
+    handleFile(e) {
+      uploadProfilePic(e.target.files[0]);
+    }
+  },
+  computed: {
+    imgurl() {
+      return store.state.userPictureURL;
+    }
+  }
+};
+</script>
+
+<style lang="scss" scoped>
+.save-button {
+  background-color: #42b983;
+  margin-bottom: 10px;
+  border: none;
+}
+.about-me-tag {
+  display: inline-block;
+}
+.about-header {
+  padding-bottom: 10px;
+}
+.about {
+  width: 100%;
+  border: 1px solid #ebeef5;
+  border-radius: 4px;
+  padding: 0px 20px 20px 20px;
+}
+.edit-content {
+  display: inline-block;
+  text-align: left;
+  width: 65%;
+}
+.profile-picture {
+  border-radius: 50%;
+  border: 1px solid #ebeef5;
+  max-width: 150px;
+  height: 150px;
+}
+.profile-overflow {
+  height: 152px;
+  width: 152px;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+}
+.user-desc {
+  transition: border 0.4s;
+  width: 100%;
+  height: 200px;
+  resize: vertical;
+}
+</style>

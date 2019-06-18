@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>My Projects</h1>
+    <a class="create-project-tag" @click="goToCreateProject">Create project</a>
     <div v-if="projects != null">
       <template class="projects" v-for="project in projects">
         <Card :key="project.id" class="box-card">
@@ -49,6 +50,9 @@ export default {
     }
   },
   methods: {
+    goToCreateProject() {
+      this.$router.push("/createproject");
+    },
     goToProjectEdit(projectObj) {
       store.commit("setPassThrough", projectObj);
       this.$router.push(`/myprojects/${projectObj.id}`);
@@ -58,6 +62,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.create-project-tag {
+  text-align: left;
+  display: inline-block;
+  //   position: relative;
+  //   left: 13%;
+  color: #409eff;
+}
+.create-project-tag:hover {
+  cursor: pointer;
+}
 .box-card {
   width: 75%;
 }

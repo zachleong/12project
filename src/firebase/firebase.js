@@ -147,4 +147,27 @@ export const waitForAuth = func => {
     func(user);
   });
 };
+export const getMyInfo = () => {
+  const uid = firebase.auth().currentUser.uid;
+  const db = firebase.firestore();
+  return db
+    .collection("Users")
+    .doc(uid)
+    .get()
+    .then(doc => {
+      return doc.data();
+    })
+    .catch(error => {
+      console.log("fail");
+      console.log(error);
+    });
+};
+export const updateUser = user => {
+  const uid = firebase.auth().currentUser.uid;
+  const db = firebase.firestore();
+  return db
+    .collection("Users")
+    .doc(uid)
+    .set(user);
+};
 console.log("firebase initialized");

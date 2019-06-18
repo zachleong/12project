@@ -12,27 +12,36 @@
       <h1 class="username">{{ username }}</h1>
     </div>
     <div class="about">
-      <h2>About me:</h2>
-      <p>Here is some decription text</p>
+      <div class="about-header">
+        <h2 class="about-me-tag">About me:</h2>
+        <a class="edit-link" @click="goToEditProfile()">Edit</a>
+      </div>
+      <p>{{ user.about }}</p>
     </div>
-    <!-- <h2>Upload profile picture:</h2>
-    <input class="file-upload" type="file" @change="handleFile($event)" /> -->
   </div>
 </template>
 <script>
 import store from "@/Vuex/store";
-import { uploadProfilePic } from "@/firebase/firebase";
+import { getMyInfo } from "@/firebase/firebase";
 export default {
   data() {
     return {
       file: "",
-      show: true,
-      username: store.state.userName
+      username: store.state.userName,
+      user: {}
     };
   },
+  mounted() {
+    this.getUser();
+  },
   methods: {
-    handleFile(e) {
-      uploadProfilePic(e.target.files[0]);
+    goToEditProfile() {
+      this.$router.push("/editprofile");
+    },
+    getUser() {
+      getMyInfo().then(user => {
+        this.user = user;
+      });
     }
   },
   computed: {
@@ -44,11 +53,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.about-me-tag {
+  display: inline-block;
+}
+.edit-link {
+  float: right;
+  padding-top: 20px;
+  color: #409eff;
+}
+.edit-link:hover {
+  cursor: pointer;
+}
+.about-header {
+  border-bottom: 1px solid #ebeef5;
+  padding-bottom: 10px;
+}
 .about {
   display: inline-block;
   text-align: left;
   width: 65%;
-  border: 2px solid #ebeef5;
+  border: 1px solid #ebeef5;
   border-radius: 4px;
   padding: 0px 20px 20px 20px;
 }

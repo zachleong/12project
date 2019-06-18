@@ -8,6 +8,7 @@ import ProjectEdit from "./views/ProjectEdit.vue";
 import CreateProject from "./views/CreateProject.vue";
 import MyProjects from "./views/MyProjects.vue";
 import UserProfile from "./views/UserProfile.vue";
+import EditProfile from "./views/EditProfile.vue";
 import store from "@/Vuex/store";
 
 Vue.use(Router);
@@ -68,6 +69,18 @@ export default new Router({
       path: "/myprofile",
       name: "myprofile",
       component: UserProfile,
+      beforeEnter: (to, from, next) => {
+        if (store.state.userIsAuth) {
+          next();
+        } else {
+          next({ name: "home" });
+        }
+      }
+    },
+    {
+      path: "/editprofile",
+      name: "editprofile",
+      component: EditProfile,
       beforeEnter: (to, from, next) => {
         if (store.state.userIsAuth) {
           next();
