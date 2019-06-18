@@ -65,8 +65,8 @@ export default new Router({
       component: ProjectEdit
     },
     {
-      path: "/profile",
-      name: "profile",
+      path: "/myprofile",
+      name: "myprofile",
       component: UserProfile,
       beforeEnter: (to, from, next) => {
         if (store.state.userIsAuth) {

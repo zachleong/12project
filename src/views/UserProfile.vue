@@ -11,8 +11,12 @@
       </span>
       <h1 class="username">{{ username }}</h1>
     </div>
-    <h2>Upload profile picture:</h2>
-    <input class="file-upload" type="file" @change="handleFile($event)" />
+    <div class="about">
+      <h2>About me:</h2>
+      <p>Here is some decription text</p>
+    </div>
+    <!-- <h2>Upload profile picture:</h2>
+    <input class="file-upload" type="file" @change="handleFile($event)" /> -->
   </div>
 </template>
 <script>
@@ -40,9 +44,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .title {
-//   text-align: center;
-// }
+.about {
+  display: inline-block;
+  text-align: left;
+  width: 65%;
+  border: 2px solid #ebeef5;
+  border-radius: 4px;
+  padding: 0px 20px 20px 20px;
+}
 .profile-picture {
   border-radius: 50%;
   border: 1px solid #ebeef5;

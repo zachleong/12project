@@ -11,7 +11,7 @@
           Sign Out
         </li>
         <li class="dropdown-el">
-          <router-link to="/profile">Profile</router-link>
+          <router-link to="/myprofile">Profile</router-link>
         </li>
       </ul>
     </transition>
