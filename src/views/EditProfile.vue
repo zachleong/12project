@@ -99,14 +99,14 @@ export default {
   width: 65%;
 }
 .profile-picture {
-  border-radius: 50%;
-  border: 1px solid #ebeef5;
   max-width: 150px;
   height: 150px;
 }
 .profile-overflow {
   height: 152px;
   width: 152px;
+  border-radius: 50%;
+  border: 1px solid #ebeef5;
   overflow: hidden;
   display: inline-block;
   vertical-align: bottom;

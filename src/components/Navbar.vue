@@ -79,7 +79,7 @@ export default {
     userIsAuth: () => {
       return store.state.userIsAuth;
     },
-    imgurl() {
+    imgurl: () => {
       return store.state.userPictureURL;
     },
     isDrop: () => {
@@ -157,14 +157,14 @@ export default {
   cursor: pointer;
 }
 .profile-overflow {
+  border-radius: 50%;
+  border: 1px solid #ebeef5;
   height: 47px;
   width: 47px;
   overflow: hidden;
   display: inline-block;
 }
 .profile-picture {
-  border-radius: 50%;
-  border: 1px solid #ebeef5;
   max-width: 45px;
   height: 45px;
 }

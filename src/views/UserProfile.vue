@@ -79,12 +79,12 @@ export default {
   padding: 0px 20px 20px 20px;
 }
 .profile-picture {
-  border-radius: 50%;
-  border: 1px solid #ebeef5;
   max-width: 150px;
   height: 150px;
 }
 .profile-overflow {
+  border-radius: 50%;
+  border: 1px solid #ebeef5;
   height: 152px;
   width: 152px;
   overflow: hidden;
