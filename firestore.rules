@@ -3,7 +3,7 @@ service cloud.firestore {
     match /Projects/{project}{
       allow read: if true;
       allow create: if request.auth.uid == request.resource.data.userID;
-      allow update: if request.auth.uid == request.resource.data.userID;
+      allow update: if request.auth.uid == request.resource.data.userID && request.auth.uid == resource.data.userID;
       allow delete: if request.auth.uid == resource.data.userID;
     }
     match /Users/{user} {
