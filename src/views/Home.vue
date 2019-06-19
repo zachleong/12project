@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <h1 v-if="userName">Welcome back, {{ userName }}</h1>
-    <!-- NOTE - Shows this if logged in and waiting, might be possible fix -->
-    <template v-else>
+    <template v-if="userIsAuth == false">
       <div class="center">
         <div class="landing-content">
           <h1>Welcome to Git Money</h1>
@@ -14,6 +12,7 @@
         </div>
       </div>
     </template>
+    <h1 v-else-if="userIsAuth">Welcome back, {{ userName }}</h1>
   </div>
 </template>
 
@@ -29,6 +28,9 @@ export default {
   computed: {
     userName() {
       return store.state.userName;
+    },
+    userIsAuth() {
+      return store.state.userIsAuth;
     }
   }
 };

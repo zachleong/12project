@@ -64,7 +64,13 @@ export default {
       });
     },
     handleFile(e) {
-      uploadProfilePic(e.target.files[0]);
+      uploadProfilePic(e.target.files[0])
+        .then(() => {
+          this.saved = true;
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   },
   computed: {

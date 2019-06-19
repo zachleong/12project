@@ -126,14 +126,7 @@ export const uploadProfilePic = file => {
   // NOTE: Make sure there are no xss or similiar vulnerabitlies here
   // Also usernames may be duplicate
   const fileRef = storageRef.child(`profilePictures/${newfilename}`);
-  fileRef
-    .put(file)
-    .then(() => {
-      console.log("file uploaded");
-    })
-    .catch(() => {
-      console.log("file didn't upload");
-    });
+  return fileRef.put(file);
 };
 export const getProfilePictureURL = username => {
   const storage = firebase.storage();
