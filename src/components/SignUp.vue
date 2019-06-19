@@ -20,7 +20,7 @@
         />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">Register</el-button>
+        <button class="button" @click="onSubmit">Register</button>
       </el-form-item>
     </el-form>
   </div>
