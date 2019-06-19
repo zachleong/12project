@@ -32,7 +32,7 @@
     <button @click="onSubmit" type="primary" class="button">
       Create Project
     </button>
-    <h1 v-bind="projectIsSet" v-if="projectIsSet">Project added</h1>
+    <h1 v-if="projectIsSet">Project added</h1>
   </div>
 </template>
 

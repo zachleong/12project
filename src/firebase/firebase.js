@@ -119,6 +119,13 @@ export const updateProject = project => {
     .doc(project.id)
     .set(_project);
 };
+export const deleteProject = project => {
+  const db = firebase.firestore();
+  return db
+    .collection("Projects")
+    .doc(project.id)
+    .delete();
+};
 export const uploadProfilePic = file => {
   const storage = firebase.storage();
   const storageRef = storage.ref();

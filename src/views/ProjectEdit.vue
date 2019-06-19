@@ -18,7 +18,11 @@
       <button @click="onSubmit" type="primary" class="button save-button">
         Save
       </button>
+      <button @click="onDelete" class="button delete-button">
+        Delete
+      </button>
       <h2 v-if="projectSaved">Project Saved</h2>
+      <h2 v-if="projectDeleted">Project Deleted</h2>
     </div>
   </div>
 </template>
@@ -26,11 +30,13 @@
 import store from "@/Vuex/store";
 import { getProjectFromDB } from "@/firebase/firebase";
 import { updateProject } from "@/firebase/firebase";
+import { deleteProject } from "@/firebase/firebase";
 export default {
   data() {
     return {
       project: null,
-      projectSaved: false
+      projectSaved: false,
+      projectDeleted: false
     };
   },
   mounted() {
@@ -41,6 +47,16 @@ export default {
       updateProject(this.project).then(() => {
         this.projectSaved = true;
       });
+    },
+    onDelete() {
+      console.log(this.project.userID);
+      deleteProject(this.project)
+        .then(() => {
+          this.projectDeleted = true;
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     setProject() {
       const passThrough = store.state.passThrough;
@@ -62,10 +78,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.delete-button {
+  //   background-color: #42b983;
+  background-color: #f56c6c;
+  border: none;
+  margin: 5px;
+}
 .save-button {
   //   background-color: #42b983;
   background-color: rgb(19, 206, 102);
   border: none;
+  margin: 5px;
 }
 .project-in {
   margin: 10px 0;
