@@ -25,7 +25,6 @@ firebase.auth().onAuthStateChanged(user => {
     getProfilePictureURL(user.displayName).then(url => {
       store.commit("setUserPictureURL", url);
     });
-    // store.commit("setUserPictureURL", user.photoURL);
   } else {
     //   Store should be cleared on sign out
     console.log("not signed in");
