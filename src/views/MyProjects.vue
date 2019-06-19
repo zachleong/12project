@@ -1,9 +1,7 @@
 <template>
   <div>
     <h1>My Projects</h1>
-    <a class="create-project-tag" @click="goToCreateProject"
-      >Create project +</a
-    >
+    <a class="create-project-tag" @click="goToCreateProject">New project +</a>
     <div v-if="projects != null">
       <template class="projects" v-for="project in projects">
         <Card :key="project.id" class="box-card">

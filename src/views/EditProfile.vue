@@ -83,7 +83,7 @@ export default {
 
 <style lang="scss" scoped>
 .save-button {
-  background-color: #42b983;
+  background-color: rgb(19, 206, 102);
   margin-bottom: 10px;
   border: none;
 }

@@ -78,7 +78,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .google-but {
-  background-color: #42b983;
+  //   background-color: #42b983;
+  background-color: rgb(19, 206, 102);
   border: none;
   display: inline-block;
   // TODO - add more padding to match login button
