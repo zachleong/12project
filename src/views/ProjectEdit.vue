@@ -25,8 +25,8 @@
       <h2 v-if="projectDeleted">Project Deleted</h2>
       <div class="comments" v-if="projectComments">
         <template class="comment" v-for="comment in projectComments">
-          <h2>{{ comment.username }}</h2>
-          <p>{{ comment.comment }}</p>
+          <h2 :key="comment.userID">{{ comment.username }}</h2>
+          <p :key="comment.userID">{{ comment.comment }}</p>
         </template>
       </div>
     </div>
