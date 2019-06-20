@@ -36,6 +36,7 @@
         <button class="button" v-if="expressInterest" @click="sendOffer">
           Send to Project manager
         </button>
+        <h2 v-if="expressSuccess">Successfully sent offer</h2>
       </div>
       <br />
     </div>
@@ -53,7 +54,8 @@ export default {
       project: null,
       profilePicURL: "",
       expressInterest: false,
-      newcomment: ""
+      newcomment: "",
+      expressSuccess: false
     };
   },
   computed: {
@@ -74,7 +76,7 @@ export default {
       console.log("sending offer");
       expressInterest(this.project.id, this.newcomment)
         .then(() => {
-          console.log("new comment succes");
+          this.expressSuccess = true;
         })
         .catch(error => {
           console.log(error);

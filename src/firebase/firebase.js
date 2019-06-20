@@ -172,10 +172,25 @@ export const updateUser = user => {
 export const expressInterest = (project, user_comment) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;
+  const userName = firebase.auth().currentUser.displayName;
   const newcomment = {
     comment: user_comment,
+    username: userName,
     userID: uid
   };
   return db.doc(`Projects/${project}/comments/${uid}`).set(newcomment);
+};
+export const getProjectComments = project => {
+  const db = firebase.firestore();
+  return db
+    .collection(`Projects/${project}/comments`)
+    .get()
+    .then(docs => {
+      let comments = [];
+      docs.forEach(doc => {
+        comments.push(doc.data());
+      });
+      return comments;
+    });
 };
 console.log("firebase initialized");
