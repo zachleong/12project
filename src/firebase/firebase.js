@@ -169,4 +169,13 @@ export const updateUser = user => {
     .doc(uid)
     .set(user);
 };
+export const expressInterest = (project, user_comment) => {
+  const db = firebase.firestore();
+  const uid = firebase.auth().currentUser.uid;
+  const newcomment = {
+    comment: user_comment,
+    userID: uid
+  };
+  return db.doc(`Projects/${project}/comments/${uid}`).set(newcomment);
+};
 console.log("firebase initialized");

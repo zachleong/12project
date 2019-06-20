@@ -18,6 +18,25 @@
         </div>
       </div>
       <div class="card">{{ project.desc }}</div>
+      <button
+        v-if="userIsAuth"
+        @click="expressInterest = true"
+        class="button expressInterest"
+      >
+        Contribute to Project
+      </button>
+      <div class="comments">
+        <textarea
+          v-if="expressInterest"
+          type="text"
+          v-model="newcomment"
+          placeholder="Outline how you will contribute"
+          class="input newcomment"
+        ></textarea>
+        <button class="button" v-if="expressInterest" @click="sendOffer">
+          Send to Project manager
+        </button>
+      </div>
       <br />
     </div>
   </div>
@@ -27,12 +46,20 @@
 import store from "@/Vuex/store";
 import { getProjectFromDB } from "@/firebase/firebase";
 import { getProfilePictureURL } from "@/firebase/firebase";
+import { expressInterest } from "@/firebase/firebase";
 export default {
   data() {
     return {
       project: null,
-      profilePicURL: ""
+      profilePicURL: "",
+      expressInterest: false,
+      newcomment: ""
     };
+  },
+  computed: {
+    userIsAuth() {
+      return store.state.userIsAuth;
+    }
   },
   mounted() {
     this.setProject();
@@ -42,6 +69,16 @@ export default {
       getProfilePictureURL(this.project.userName).then(url => {
         this.profilePicURL = url;
       });
+    },
+    sendOffer() {
+      console.log("sending offer");
+      expressInterest(this.project.id, this.newcomment)
+        .then(() => {
+          console.log("new comment succes");
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     setProject() {
       const passThrough = store.state.passThrough;
@@ -65,6 +102,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.comments {
+  width: 75vw;
+  display: inline-block;
+}
+.newcomment {
+  width: 100%;
+}
+.expressInterest {
+  float: left;
+  margin: 30px 0 30px 0;
+}
 .card-header {
   padding: 18px 20px;
 }
@@ -74,14 +122,13 @@ export default {
 }
 .card {
   margin-top: 30px;
-  width: 100%;
+  width: 96%;
   display: inline-block;
   background-color: white;
   text-align: left;
   border: 1px solid #ebeef5;
   border-radius: 4px;
-  overflow: hidden;
-  padding: 20px;
+  padding: 2%;
 }
 .project-author {
   text-align: left;
