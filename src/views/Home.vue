@@ -53,11 +53,20 @@ export default {
   margin: 10px;
   border-radius: 20px;
   width: 200px;
-  border: none;
+  border: 1px solid #ebeef5;
   font-size: 16px;
   font-family: inherit;
+  //   -webkit-box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.1);
+  //   box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.1);
+  background-color: white;
+  transition-duration: 0.2s;
+}
+.big-btn:hover {
   -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-  background-color: white;
+  cursor: pointer;
+}
+.big-btn:focus {
+  outline: none;
 }
 </style>
