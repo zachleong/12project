@@ -13,14 +13,14 @@
       </el-form-item>
       <el-form-item label="Password">
         <el-input
-          @keyup.enter.native="onSubmit"
+          @keyup.enter.native="e => onSubmit(e)"
           placeholder="Please enter password"
           v-model="password"
           show-password
         />
       </el-form-item>
       <el-form-item>
-        <button class="button" @click="onSubmit">Register</button>
+        <button class="button" @click="e => onSubmit(e)">Register</button>
       </el-form-item>
     </el-form>
   </div>
@@ -40,7 +40,8 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
+    onSubmit(e) {
+      e.preventDefault();
       if (!this.formIsValid) {
         console.log("form not valid");
       } else {

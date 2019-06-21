@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="editproject">
     <h1>Edit Project</h1>
     <div v-if="project">
       <input
@@ -24,10 +24,16 @@
       <h2 v-if="projectSaved">Project Saved</h2>
       <h2 v-if="projectDeleted">Project Deleted</h2>
       <div class="comments" v-if="projectComments">
-        <template class="comment" v-for="comment in projectComments">
-          <h2 :key="comment.userID">{{ comment.username }}</h2>
+        <div
+          class="comment"
+          v-for="comment in projectComments"
+          :key="comment.userID"
+        >
+          <p :key="comment.userID" class="comment-name">
+            {{ comment.username }}
+          </p>
           <p :key="comment.userID">{{ comment.comment }}</p>
-        </template>
+        </div>
       </div>
     </div>
   </div>
@@ -100,6 +106,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.comment-name {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ebeef5;
+  font-size: 20px;
+}
+.editproject {
+  width: 65%;
+  display: inline-block;
+}
+.comment {
+  margin-top: 20px;
+  text-align: left;
+  border: 1px solid #ebeef5;
+  padding: 0 20px 20px 20px;
+  border-radius: 4px;
+}
 .delete-button {
   //   background-color: #42b983;
   background-color: #f56c6c;
@@ -114,11 +136,11 @@ export default {
 }
 .project-in {
   margin: 10px 0;
-  width: 65%;
+  width: 100%;
 }
 .project-desc {
   transition: border 0.4s;
-  width: 65%;
+  width: 100%;
   height: 200px;
   resize: vertical;
 }
