@@ -3,7 +3,7 @@
     <template v-if="userIsAuth == false">
       <div class="center">
         <div class="landing-content">
-          <h1>Welcome to Git Money</h1>
+          <h1 class="welcome-title">Welcome to Git Money</h1>
           <h2>A software collaboration platform</h2>
           <div class="button-container">
             <button class="big-btn" @click="goToPage(`/register`)">
@@ -46,6 +46,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.welcome-title {
+  border-bottom: 1px solid #e2e4eb;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
 .landing-content {
   margin-top: 30px;
   //   background-color: #409eff;
