@@ -5,13 +5,20 @@
         <div class="project-header">
           <h1 class="project-title">{{ project.title }}</h1>
           <div class="project-author">
-            Project owned by {{ project.userName }}
+            Project owned by
+            <a
+              @click="goToPage(`/profile/${project.userID}`)"
+              class="profile-link"
+            >
+              {{ project.userName }}
+            </a>
             <!-- TODO - Add else here for when profile pic hasn't loaded yet -->
-            <span class="profile-overflow" v-if="profilePicURL">
+            <span class="profile-overflow">
               <img
                 :src="profilePicURL"
                 alt="profile picture"
                 class="profile-picture"
+                v-if="profilePicURL"
               />
             </span>
           </div>
@@ -67,8 +74,11 @@ export default {
     this.setProject();
   },
   methods: {
+    goToPage(url) {
+      this.$router.push(url);
+    },
     getPicURL() {
-      getProfilePictureURL(this.project.userName).then(url => {
+      getProfilePictureURL(this.project.userID).then(url => {
         this.profilePicURL = url;
       });
     },
@@ -104,6 +114,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.profile-link {
+  color: #409eff;
+}
+.profile-link:hover {
+  cursor: pointer;
+}
 .comments {
   width: 75vw;
   display: inline-block;
@@ -147,17 +163,19 @@ export default {
   float: left;
 }
 .profile-overflow {
+  border-radius: 50%;
+  border: 1px solid #ebeef5;
   height: 27px;
   width: 27px;
   overflow: hidden;
   display: inline-block;
+  text-align: center;
   vertical-align: bottom;
 }
 .profile-picture {
-  border-radius: 50%;
-  border: 1px solid #ebeef5;
   max-width: 25px;
   height: 25px;
+  display: inline-block;
 }
 .profile-footer {
   float: right;
