@@ -23,23 +23,6 @@
       </button>
       <h2 v-if="projectSaved">Project Saved</h2>
       <h2 v-if="projectDeleted">Project Deleted</h2>
-      <h2>Offers</h2>
-      <div
-        class="comments"
-        v-if="projectComments != null && projectComments.length != 0"
-      >
-        <div
-          class="comment"
-          v-for="comment in projectComments"
-          :key="comment.userID"
-        >
-          <p :key="comment.userID" class="comment-name">
-            {{ comment.username }}
-          </p>
-          <p :key="comment.userID">{{ comment.comment }}</p>
-        </div>
-      </div>
-      <div v-else-if="projectComments.length != 0">No offers yet...</div>
     </div>
   </div>
 </template>
@@ -48,14 +31,12 @@ import store from "@/Vuex/store";
 import { getProjectFromDB } from "@/firebase/firebase";
 import { updateProject } from "@/firebase/firebase";
 import { deleteProject } from "@/firebase/firebase";
-import { getProjectComments } from "@/firebase/firebase";
 export default {
   data() {
     return {
       project: null,
       projectSaved: false,
-      projectDeleted: false,
-      projectComments: null
+      projectDeleted: false
     };
   },
   mounted() {
@@ -82,24 +63,10 @@ export default {
       // TODO add profile picture to passthrough
       if (passThrough) {
         this.project = passThrough;
-        getProjectComments(passThrough.id)
-          .then(comments => {
-            this.projectComments = comments;
-          })
-          .catch(error => {
-            console.log(error);
-          });
       } else {
         getProjectFromDB(this.$route.params.projectID)
           .then(project => {
             this.project = project;
-            getProjectComments(project.id)
-              .then(comments => {
-                this.projectComments = comments;
-              })
-              .catch(error => {
-                console.log(error);
-              });
           })
           .catch(error => {
             console.log("There was an error" + error);
