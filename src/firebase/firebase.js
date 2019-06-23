@@ -22,7 +22,7 @@ firebase.auth().onAuthStateChanged(user => {
     store.commit("setUserEmail", user.email);
     store.commit("setUserName", user.displayName);
     store.commit("setUserID", user.uid);
-    getProfilePictureURL(user.displayName).then(url => {
+    getProfilePictureURL(user.uid).then(url => {
       store.commit("setUserPictureURL", url);
     });
   } else {
@@ -129,25 +129,49 @@ export const deleteProject = project => {
 export const uploadProfilePic = file => {
   const storage = firebase.storage();
   const storageRef = storage.ref();
-  const newfilename = firebase.auth().currentUser.displayName;
+  const newfilename = firebase.auth().currentUser.uid;
   // NOTE: Make sure there are no xss or similiar vulnerabitlies here
   // Also usernames may be duplicate
   const fileRef = storageRef.child(`profilePictures/${newfilename}`);
   return fileRef.put(file);
 };
-export const getProfilePictureURL = username => {
+export const getProfilePictureURL = uid => {
   const storage = firebase.storage();
   const storageRef = storage.ref();
-  const imageRef = storageRef.child(`profilePictures/${username}`);
-  return imageRef.getDownloadURL();
+  const imageRef = storageRef.child(`profilePictures/${uid}`);
+  return imageRef
+    .getDownloadURL()
+    .then(url => {
+      return url;
+    })
+    .catch(() => {
+      return storageRef.child("profilePictures/default").getDownloadURL();
+    });
 };
 export const waitForAuth = func => {
   firebase.auth().onAuthStateChanged(user => {
     func(user);
   });
 };
+export const createAccount = (username, email, password) => {
+  return firebase
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then(usercred => {
+      usercred.user.updateProfile({
+        displayName: username
+      });
+      updateUser({
+        displayName: username
+      });
+    });
+};
 export const getMyInfo = () => {
   const uid = firebase.auth().currentUser.uid;
+  return getUserInfo(uid);
+};
+
+export const getUserInfo = uid => {
   const db = firebase.firestore();
   return db
     .collection("Users")

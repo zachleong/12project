@@ -27,8 +27,7 @@
 </template>
 
 <script>
-import firebase from "firebase/app";
-import "firebase/auth";
+import { createAccount } from "@/firebase/firebase";
 import store from "@/Vuex/store";
 export default {
   data() {
@@ -46,14 +45,8 @@ export default {
         console.log("form not valid");
       } else {
         store.commit("loading", true);
-        firebase
-          .auth()
-          .createUserWithEmailAndPassword(this.email, this.password)
-          //NOTE: is this the best way to do this?
-          .then(usercred => {
-            usercred.user.updateProfile({
-              displayName: this.username
-            });
+        createAccount(this.username, this.email, this.password)
+          .then(() => {
             store.commit("loading", false);
             this.$router.push({ name: "home" });
           })

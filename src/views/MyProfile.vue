@@ -9,7 +9,7 @@
           v-if="imgurl"
         />
       </span>
-      <h1 class="username">{{ user.displayName }}</h1>
+      <h1 class="username">{{ username }}</h1>
     </div>
     <div class="about">
       <div class="about-header">
@@ -21,40 +21,34 @@
   </div>
 </template>
 <script>
-import { getUserInfo } from "@/firebase/firebase";
-import { getProfilePictureURL } from "@/firebase/firebase";
+import store from "@/Vuex/store";
+import { getMyInfo } from "@/firebase/firebase";
 export default {
   data() {
     return {
       file: "",
-      user: {},
-      imgurl: null
+      username: store.state.userName,
+      user: {}
     };
   },
   mounted() {
     this.getUser();
-    this.getImgUrl();
   },
   methods: {
     goToEditProfile() {
       this.$router.push("/editprofile");
     },
     getUser() {
-      const uid = this.$route.params.userID;
-      getUserInfo(uid)
-        .then(user => {
-          if (user) {
-            this.user = user;
-          }
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-    getImgUrl() {
-      getProfilePictureURL(this.$route.params.userID).then(url => {
-        this.imgurl = url;
+      getMyInfo().then(user => {
+        if (user) {
+          this.user = user;
+        }
       });
+    }
+  },
+  computed: {
+    imgurl() {
+      return store.state.userPictureURL;
     }
   }
 };

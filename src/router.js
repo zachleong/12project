@@ -9,7 +9,9 @@ import ManageProject from "./views/ManageProject.vue";
 import CreateProject from "./views/CreateProject.vue";
 import MyProjects from "./views/MyProjects.vue";
 import UserProfile from "./views/UserProfile.vue";
+import MyProfile from "./views/MyProfile.vue";
 import EditProfile from "./views/EditProfile.vue";
+import Guide from "./views/Guide.vue";
 import store from "@/Vuex/store";
 
 Vue.use(Router);
@@ -77,9 +79,14 @@ export default new Router({
       component: ProjectEdit
     },
     {
+      path: "/profile/:userID",
+      name: "Profile",
+      component: UserProfile
+    },
+    {
       path: "/myprofile",
       name: "myprofile",
-      component: UserProfile,
+      component: MyProfile,
       beforeEnter: (to, from, next) => {
         if (store.state.userIsAuth) {
           next();
@@ -108,6 +115,11 @@ export default new Router({
       // which is lazy-loaded when the route is visited.
       component: () =>
         import(/* webpackChunkName: "about" */ "./views/About.vue")
+    },
+    {
+      path: "/guide",
+      name: "guide",
+      component: Guide
     }
   ]
 });
