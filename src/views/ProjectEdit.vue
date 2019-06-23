@@ -23,7 +23,11 @@
       </button>
       <h2 v-if="projectSaved">Project Saved</h2>
       <h2 v-if="projectDeleted">Project Deleted</h2>
-      <div class="comments" v-if="projectComments">
+      <h2>Offers</h2>
+      <div
+        class="comments"
+        v-if="projectComments != null && projectComments.length != 0"
+      >
         <div
           class="comment"
           v-for="comment in projectComments"
@@ -35,6 +39,7 @@
           <p :key="comment.userID">{{ comment.comment }}</p>
         </div>
       </div>
+      <div v-else-if="projectComments.length != 0">No offers yet...</div>
     </div>
   </div>
 </template>
