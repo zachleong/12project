@@ -145,7 +145,7 @@ export const getProfilePictureURL = uid => {
       return url;
     })
     .catch(() => {
-      return storageRef.child("profilePictures/default").getDownloadURL();
+      return storageRef.child("profilePictures/default.svg").getDownloadURL();
     });
 };
 export const waitForAuth = func => {
