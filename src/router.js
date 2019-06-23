@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-import Login from "./views/AuthPage.vue";
+import AuthPage from "./views/AuthPage.vue";
 import Projects from "./views/Projects.vue";
 import ProjectInfo from "./views/ProjectInfo.vue";
 import ProjectEdit from "./views/ProjectEdit.vue";
@@ -25,7 +25,12 @@ export default new Router({
     {
       path: "/login",
       name: "login",
-      component: Login
+      component: AuthPage
+    },
+    {
+      path: "/register",
+      name: "register",
+      component: AuthPage
     },
     {
       path: "/projects",

@@ -4,9 +4,11 @@
       <div class="center">
         <div class="landing-content">
           <h1>Welcome to Git Money</h1>
-          <h2>Here will be the mission statement or mantra</h2>
+          <h2>A software collaboration platform</h2>
           <div class="button-container">
-            <button class="big-btn">Get started</button>
+            <button class="big-btn" @click="goToPage(`/register`)">
+              Get started
+            </button>
             <button class="big-btn">About</button>
           </div>
         </div>
@@ -24,6 +26,11 @@ export default {
   name: "home",
   data() {
     return {};
+  },
+  methods: {
+    goToPage(url) {
+      this.$router.push(url);
+    }
   },
   computed: {
     userName() {

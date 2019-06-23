@@ -1,11 +1,19 @@
 <template>
   <div class="container">
-    <el-tabs type="border-card" v-loading="loading">
+    <el-tabs type="border-card" v-loading="loading" v-if="isLogin">
       <el-tab-pane label="Login">
         <AuthForm />
       </el-tab-pane>
       <el-tab-pane label="Register">
         <SignUp />
+      </el-tab-pane>
+    </el-tabs>
+    <el-tabs type="border-card" v-loading="loading" v-else>
+      <el-tab-pane label="Register">
+        <SignUp />
+      </el-tab-pane>
+      <el-tab-pane label="Login">
+        <AuthForm />
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -23,6 +31,9 @@ export default {
   computed: {
     loading() {
       return store.state.loading;
+    },
+    isLogin() {
+      return this.$route.path == "/login";
     }
   },
   components: {
