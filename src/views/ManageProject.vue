@@ -113,8 +113,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.accept-offer {
+  background-color: rgb(19, 206, 102);
+}
+.deny-offer {
+  background-color: #f56c6c;
+}
 .offer-buttons {
   padding: 10px;
+  border: none;
   margin: 0 5px 0 5px;
 }
 .comment-buttons {
@@ -122,7 +129,6 @@ export default {
 }
 .edit-link {
   float: right;
-  display: inline-block;
   color: #409eff;
 }
 .edit-link:hover {
