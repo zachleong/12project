@@ -31,6 +31,7 @@
       <template v-if="userIsAuth">
         <router-link to="/myprojects" class="navlink">My Projects</router-link>
       </template>
+      <router-link to="/explore" class="navlink">Explore</router-link>
       <div class="rightContent">
         <span
           class="profile-dropdown"
