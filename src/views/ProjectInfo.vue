@@ -33,27 +33,29 @@
           {{ tag }}
         </p>
       </div>
-      <div>
+      <button
+        v-if="userIsAuth"
+        @click="expressInterest = true"
+        class="button expressInterest"
+      >
+        Contribute to Project
+      </button>
+      <div class="comments">
+        <textarea
+          v-if="expressInterest"
+          type="text"
+          v-model="newcomment"
+          placeholder="Outline how you will contribute"
+          class="input newcomment"
+        ></textarea>
         <button
-          v-if="userIsAuth"
-          @click="expressInterest = true"
-          class="button expressInterest"
+          class="button send-offer"
+          v-if="expressInterest"
+          @click="sendOffer"
         >
-          Contribute to Project
+          Send to Project manager
         </button>
-        <div class="comments">
-          <textarea
-            v-if="expressInterest"
-            type="text"
-            v-model="newcomment"
-            placeholder="Outline how you will contribute"
-            class="input newcomment"
-          ></textarea>
-          <button class="button" v-if="expressInterest" @click="sendOffer">
-            Send to Project manager
-          </button>
-          <h2 v-if="expressSuccess">Successfully sent offer</h2>
-        </div>
+        <h2 v-if="expressSuccess">Successfully sent offer</h2>
       </div>
       <br />
     </div>
@@ -137,15 +139,15 @@ export default {
   cursor: pointer;
 }
 .comments {
-  //   width: 75vw;
-  display: inline-block;
+  //   display: inline-block;
+  grid-row: 4 / 5;
 }
 .newcomment {
-  //   width: 100%;
+  width: 100%;
+  display: block;
 }
-.expressInterest {
-  float: left;
-  margin: 30px 0 30px 0;
+.send-offer {
+  margin-top: 15px;
 }
 .card-header {
   padding: 18px 20px;
