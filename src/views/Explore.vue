@@ -63,7 +63,7 @@ export default {
   transition-duration: 0.4s;
 }
 .grid-item:hover {
-  box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
 </style>

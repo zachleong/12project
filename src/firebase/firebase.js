@@ -54,7 +54,9 @@ const projectFromDoc = doc => {
     title: doc.data().projectTitle,
     desc: doc.data().projectDesc,
     userID: doc.data().userID,
-    userName: doc.data().userName
+    userName: doc.data().userName,
+    technologies: doc.data().technologies,
+    tags: doc.data().tags
   };
 };
 export const getProjectFromDB = docID => {

@@ -49,6 +49,10 @@ h1 {
 h2 {
   font-weight: 300;
 }
+h3 {
+  font-weight: 300;
+  margin: 15px 0 15px 0;
+}
 .button {
   font-size: 16px;
   font-family: inherit;
@@ -91,5 +95,13 @@ h2 {
 .pageTrans-enter,
 .pageTrans-leave-to {
   opacity: 0;
+}
+.underline {
+  border-bottom: 1px solid #ebeef5;
+  padding-bottom: 15px;
+}
+.overline {
+  border-top: 1px solid #ebeef5;
+  padding-top: 15px;
 }
 </style>

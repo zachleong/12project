@@ -27,11 +27,11 @@
         class="brand navlink"
       />
       <router-link to="/" class="navlink">Home</router-link>
+      <router-link to="/explore" class="navlink">Explore</router-link>
       <router-link to="/projects" class="navlink">Browse Projects</router-link>
       <template v-if="userIsAuth">
         <router-link to="/myprojects" class="navlink">My Projects</router-link>
       </template>
-      <router-link to="/explore" class="navlink">Explore</router-link>
       <div class="rightContent">
         <span
           class="profile-dropdown"

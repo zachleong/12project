@@ -1,49 +1,59 @@
 <template>
   <div>
     <div class="project-info" v-if="project">
-      <div v-if="project">
-        <div class="project-header">
-          <h1 class="project-title">{{ project.title }}</h1>
-          <div class="project-author">
-            Project owned by
-            <a
-              @click="goToPage(`/profile/${project.userID}`)"
-              class="profile-link"
-            >
-              {{ project.userName }}
-            </a>
-            <!-- TODO - Add else here for when profile pic hasn't loaded yet -->
-            <span class="profile-overflow">
-              <img
-                :src="profilePicURL"
-                alt="profile picture"
-                class="profile-picture"
-                v-if="profilePicURL"
-              />
-            </span>
-          </div>
+      <div class="project-header">
+        <h1 class="project-title">{{ project.title }}</h1>
+        <div class="project-author">
+          Project owned by
+          <a
+            @click="goToPage(`/profile/${project.userID}`)"
+            class="profile-link"
+          >
+            {{ project.userName }}
+          </a>
+          <!-- TODO - Add else here for when profile pic hasn't loaded yet -->
+          <span class="profile-overflow">
+            <img
+              :src="profilePicURL"
+              alt="profile picture"
+              class="profile-picture"
+              v-if="profilePicURL"
+            />
+          </span>
         </div>
       </div>
       <div class="card">{{ project.desc }}</div>
-      <button
-        v-if="userIsAuth"
-        @click="expressInterest = true"
-        class="button expressInterest"
-      >
-        Contribute to Project
-      </button>
-      <div class="comments">
-        <textarea
-          v-if="expressInterest"
-          type="text"
-          v-model="newcomment"
-          placeholder="Outline how you will contribute"
-          class="input newcomment"
-        ></textarea>
-        <button class="button" v-if="expressInterest" @click="sendOffer">
-          Send to Project manager
+      <div class="project-details card">
+        <h3 class="underline">Technologies:</h3>
+        <p v-for="technology in project.technologies" :key="technology">
+          {{ technology }}
+        </p>
+        <h3 class="underline overline">Tags:</h3>
+        <p v-for="tag in project.tags" :key="tag">
+          {{ tag }}
+        </p>
+      </div>
+      <div>
+        <button
+          v-if="userIsAuth"
+          @click="expressInterest = true"
+          class="button expressInterest"
+        >
+          Contribute to Project
         </button>
-        <h2 v-if="expressSuccess">Successfully sent offer</h2>
+        <div class="comments">
+          <textarea
+            v-if="expressInterest"
+            type="text"
+            v-model="newcomment"
+            placeholder="Outline how you will contribute"
+            class="input newcomment"
+          ></textarea>
+          <button class="button" v-if="expressInterest" @click="sendOffer">
+            Send to Project manager
+          </button>
+          <h2 v-if="expressSuccess">Successfully sent offer</h2>
+        </div>
       </div>
       <br />
     </div>
@@ -114,6 +124,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.project-details {
+  text-align: center !important;
+}
+.about-project {
+  display: inline-grid;
+}
 .profile-link {
   color: #409eff;
 }
@@ -121,11 +137,11 @@ export default {
   cursor: pointer;
 }
 .comments {
-  width: 75vw;
+  //   width: 75vw;
   display: inline-block;
 }
 .newcomment {
-  width: 100%;
+  //   width: 100%;
 }
 .expressInterest {
   float: left;
@@ -135,12 +151,16 @@ export default {
   padding: 18px 20px;
 }
 .project-info {
-  display: inline-block;
+  display: inline-grid;
+  //   grid-template-columns: 50% 50%;
+  grid-template-columns: 5fr 2fr;
+  grid-row-gap: 30px;
+  grid-column-gap: 15px;
   width: 75%;
 }
 .card {
-  margin-top: 30px;
-  width: 96%;
+  //   margin-top: 30px;
+  //   width: 96%;
   display: inline-block;
   background-color: white;
   text-align: left;
@@ -150,17 +170,17 @@ export default {
 }
 .project-author {
   text-align: left;
-  position: relative;
-  left: 20px;
+  //   position: relative;
+  //   left: 20px;
 }
 .project-title {
   text-align: left;
-  border-bottom: 2px solid #ebeef5;
+  border-bottom: 1px solid #ebeef5;
   padding-bottom: 10px;
-  width: 100%;
+  //   width: 100%;
 }
 .project-header {
-  float: left;
+  grid-column: 1/3;
 }
 .profile-overflow {
   border-radius: 50%;

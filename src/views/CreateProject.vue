@@ -8,9 +8,9 @@
       class="input project-in"
     />
     <el-select
-      v-model="project.languages"
+      v-model="project.technologies"
       multiple
-      placeholder="Coding languages"
+      placeholder="Technologies"
       class="lang-select"
     >
       <el-option
@@ -28,6 +28,12 @@
       placeholder="Project description"
       class="input project-desc"
     />
+    <input
+      type="text"
+      v-model="project.tags"
+      placeholder="Tags"
+      class="input project-tags"
+    />
     <br />
     <button @click="onSubmit" type="primary" class="button">
       Create Project
@@ -44,13 +50,22 @@ export default {
       project: {
         projectTitle: "",
         projectDesc: "",
-        languages: []
+        technologies: [],
+        tags: ""
       },
       projectIsSet: false,
       options: [
         {
           value: "Javascript",
           label: "Javascript"
+        },
+        {
+          value: "HTML",
+          label: "HTML"
+        },
+        {
+          value: "CSS",
+          label: "CSS"
         },
         {
           value: "Python",
@@ -65,6 +80,7 @@ export default {
   },
   methods: {
     onSubmit() {
+      this.project.tags = this.project.tags.split(",");
       setProject(this.project)
         .then(() => {
           this.projectIsSet = true;
@@ -78,6 +94,11 @@ export default {
 </script>
 
 <style lang="scss">
+.project-tags {
+  width: 65%;
+  display: inline-block;
+  margin-bottom: 10px;
+}
 .project-in {
   margin: 10px 0;
   width: 49%;
