@@ -14,7 +14,7 @@
     <div class="about">
       <div class="about-header">
         <h2 class="about-me-tag">About me:</h2>
-        <a class="edit-link" @click="goToEditProfile()">Edit</a>
+        <a class="edit-link" @click="goToEditProfile()" v-if="isOwner">Edit</a>
       </div>
       <p>{{ user.about }}</p>
     </div>
@@ -23,6 +23,7 @@
 <script>
 import { getUserInfo } from "@/firebase/firebase";
 import { getProfilePictureURL } from "@/firebase/firebase";
+import store from "@/Vuex/store";
 export default {
   data() {
     return {
@@ -55,6 +56,11 @@ export default {
       getProfilePictureURL(this.$route.params.userID).then(url => {
         this.imgurl = url;
       });
+    }
+  },
+  computed: {
+    isOwner() {
+      return store.state.userID == this.$route.params.userID;
     }
   }
 };

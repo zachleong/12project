@@ -162,7 +162,8 @@ export const createAccount = (username, email, password) => {
         displayName: username
       });
       updateUser({
-        displayName: username
+        displayName: username,
+        userID: usercred.user.uid
       });
     });
 };

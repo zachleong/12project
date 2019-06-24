@@ -15,8 +15,10 @@
       </div>
     </template>
     <div v-else-if="userIsAuth">
-      <h1>Welcome back, {{ userName }}</h1>
-      <button class="big-btn" @click="goToPage(`/guide`)">Guide</button>
+      <div class="landing-content">
+        <h1 class="welcome-title">Welcome back, {{ userName }}</h1>
+        <button class="big-btn" @click="goToPage(`/guide`)">Guide</button>
+      </div>
     </div>
   </div>
 </template>
