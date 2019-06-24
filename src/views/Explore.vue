@@ -25,7 +25,7 @@
 export default {
   methods: {
     goToPage(url) {
-      this.$router.push(`${url}`);
+      this.$router.push(url);
     }
   }
 };
