@@ -176,7 +176,7 @@ export default {
   text-align: left;
   border: 1px solid #ebeef5;
   border-radius: 4px;
-  padding: 2%;
+  padding: 0 2% 2% 2%;
 }
 .project-author {
   text-align: left;
