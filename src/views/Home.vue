@@ -39,6 +39,10 @@
           >
             <img src="../assets/pentest.svg" alt="Pentest" class="img-art" />
           </div>
+          <div class="grid-item other" @click="goToCat('/projects', 'other')">
+            <img src="../assets/other.svg" alt="Other" class="img-art" />
+          </div>
+
           <div>
             <p class="title">Frontend development</p>
           </div>
@@ -47,6 +51,9 @@
           </div>
           <div>
             <p class="title">Penetration testing</p>
+          </div>
+          <div>
+            <p class="title">Other</p>
           </div>
         </div>
       </div>
@@ -83,6 +90,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.other {
+  //   background-color: #f1a533;
+  background-color: #f89e36;
+}
 .frontend {
   background-color: #13ce66;
 }
@@ -102,7 +113,7 @@ export default {
 .grid-container {
   margin-top: 30px;
   display: inline-grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-rows: 150px;
   grid-column-gap: 50px;
   width: 100%;

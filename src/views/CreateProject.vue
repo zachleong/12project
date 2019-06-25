@@ -67,6 +67,10 @@ export default {
         {
           value: "Penetration testing",
           label: "Penetration testing"
+        },
+        {
+          value: "Other",
+          label: "Other"
         }
       ]
     };
