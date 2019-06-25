@@ -44,6 +44,8 @@ export default {
     handleCheckAllChange(val) {
       this.checkedCategories = val ? categories : [];
       this.isIndeterminate = false;
+      store.commit("updateFilter", true);
+      store.commit("setCategories", this.checkedCategories);
     },
     handleCheckedCatChange(value) {
       let checkedCount = value.length;
