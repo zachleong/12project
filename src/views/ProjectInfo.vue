@@ -22,7 +22,36 @@
           </span>
         </div>
       </div>
-      <div class="card">{{ project.desc }}</div>
+      <div>
+        <div class="card">
+          <h3 class="underline">About:</h3>
+          {{ project.desc }}
+        </div>
+        <button
+          v-if="userIsAuth"
+          @click="expressInterest = true"
+          class="button expressInterest"
+        >
+          Contribute to Project
+        </button>
+        <div class="comments">
+          <textarea
+            v-if="expressInterest"
+            type="text"
+            v-model="newcomment"
+            placeholder="Outline how you will contribute"
+            class="input newcomment"
+          ></textarea>
+          <button
+            class="button send-offer"
+            v-if="expressInterest"
+            @click="sendOffer"
+          >
+            Send to Project manager
+          </button>
+          <h2 v-if="expressSuccess">Successfully sent offer</h2>
+        </div>
+      </div>
       <div class="project-details card">
         <h3 class="underline">Technologies:</h3>
         <p v-for="technology in project.technologies" :key="technology">
@@ -33,30 +62,7 @@
           {{ tag }}
         </p>
       </div>
-      <button
-        v-if="userIsAuth"
-        @click="expressInterest = true"
-        class="button expressInterest"
-      >
-        Contribute to Project
-      </button>
-      <div class="comments">
-        <textarea
-          v-if="expressInterest"
-          type="text"
-          v-model="newcomment"
-          placeholder="Outline how you will contribute"
-          class="input newcomment"
-        ></textarea>
-        <button
-          class="button send-offer"
-          v-if="expressInterest"
-          @click="sendOffer"
-        >
-          Send to Project manager
-        </button>
-        <h2 v-if="expressSuccess">Successfully sent offer</h2>
-      </div>
+
       <br />
     </div>
   </div>
@@ -140,7 +146,10 @@ export default {
 }
 .comments {
   //   display: inline-block;
-  grid-row: 4 / 5;
+  //   grid-row: 4 / 5;
+}
+.expressInterest {
+  margin: 15px 0 15px 0;
 }
 .newcomment {
   width: 100%;
@@ -161,8 +170,7 @@ export default {
   width: 75%;
 }
 .card {
-  //   margin-top: 30px;
-  //   width: 96%;
+  width: 96%;
   display: inline-block;
   background-color: white;
   text-align: left;

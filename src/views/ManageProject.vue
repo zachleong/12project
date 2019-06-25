@@ -23,7 +23,34 @@
           <p class="edit-link" @click="goToProjectEdit">Edit Project</p>
         </div>
       </div>
-      <div class="card">{{ project.desc }}</div>
+      <div>
+        <div class="card">
+          <h3 class="underline">About:</h3>
+          {{ project.desc }}
+        </div>
+        <div>
+          <h2>Offers</h2>
+          <div class="comments" v-if="projectComments != null">
+            <div
+              class="comment"
+              v-for="comment in projectComments"
+              :key="comment.userID"
+            >
+              <div :key="comment.userID" class="comment-name">
+                <a>
+                  {{ comment.username }}
+                </a>
+                <div class="comment-buttons">
+                  <a class="accept-offer offer-buttons button">Accept Offer</a>
+                  <a class="deny-offer offer-buttons button">Deny Offer</a>
+                </div>
+              </div>
+              <p>{{ comment.comment }}</p>
+            </div>
+          </div>
+          <div v-else>No offers yet...</div>
+        </div>
+      </div>
       <div class="project-details card">
         <h3 class="underline">Technologies:</h3>
         <p v-for="technology in project.technologies" :key="technology">
@@ -34,28 +61,7 @@
           {{ tag }}
         </p>
       </div>
-      <div>
-        <h2>Offers</h2>
-        <div class="comments" v-if="projectComments != null">
-          <div
-            class="comment"
-            v-for="comment in projectComments"
-            :key="comment.userID"
-          >
-            <div :key="comment.userID" class="comment-name">
-              <a>
-                {{ comment.username }}
-              </a>
-              <div class="comment-buttons">
-                <a class="accept-offer offer-buttons button">Accept Offer</a>
-                <a class="deny-offer offer-buttons button">Deny Offer</a>
-              </div>
-            </div>
-            <p>{{ comment.comment }}</p>
-          </div>
-        </div>
-        <div v-else>No offers yet...</div>
-      </div>
+
       <br />
     </div>
   </div>
@@ -211,8 +217,7 @@ export default {
   width: 75%;
 }
 .card {
-  //   margin-top: 30px;
-  //   width: 96%;
+  width: 96%;
   display: inline-block;
   background-color: white;
   text-align: left;
