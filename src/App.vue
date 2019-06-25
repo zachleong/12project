@@ -3,9 +3,7 @@
     <Navbar />
     <SideNav />
     <transition name="pageTrans" mode="out-in">
-      <keep-alive include="projectPage">
-        <router-view />
-      </keep-alive>
+      <router-view />
     </transition>
   </div>
 </template>
