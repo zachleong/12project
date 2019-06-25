@@ -55,7 +55,7 @@ export default {
     },
     goToProjectEdit(projectObj) {
       store.commit("setPassThrough", projectObj);
-      this.$router.push(`/myprojects/${projectObj.id}`);
+      this.$router.push(`/projects/${projectObj.id}`);
     }
   }
 };

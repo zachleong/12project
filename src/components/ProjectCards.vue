@@ -62,11 +62,7 @@ export default {
     },
     goToProjectInfo(projectObj) {
       store.commit("setPassThrough", projectObj);
-      if (projectObj.userID == store.state.userID) {
-        this.$router.push(`/myprojects/${projectObj.id}`);
-      } else {
-        this.$router.push(`/projects/${projectObj.id}`);
-      }
+      this.$router.push(`/projects/${projectObj.id}`);
     }
   }
 };

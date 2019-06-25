@@ -6,7 +6,6 @@ import AuthPage from "./views/AuthPage.vue";
 import Projects from "./views/Projects.vue";
 import ProjectInfo from "./views/ProjectInfo.vue";
 import ProjectEdit from "./views/ProjectEdit.vue";
-import ManageProject from "./views/ManageProject.vue";
 import CreateProject from "./views/CreateProject.vue";
 import MyProjects from "./views/MyProjects.vue";
 import UserProfile from "./views/UserProfile.vue";
@@ -73,11 +72,6 @@ export default new Router({
           next({ name: "home" });
         }
       }
-    },
-    {
-      path: "/myprojects/:projectID",
-      name: "ManageProject",
-      component: ManageProject
     },
     {
       path: "/editproject/:projectID",

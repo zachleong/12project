@@ -20,6 +20,9 @@
               v-if="profilePicURL"
             />
           </span>
+          <p class="edit-link" @click="goToProjectEdit" v-if="userIsOwner">
+            Edit Project
+          </p>
         </div>
       </div>
       <div>
@@ -28,7 +31,7 @@
           {{ project.desc }}
         </div>
         <button
-          v-if="userIsAuth"
+          v-if="userIsAuth && !userIsOwner"
           @click="expressInterest = true"
           class="button expressInterest"
         >
@@ -50,6 +53,26 @@
             Send to Project manager
           </button>
           <h2 v-if="expressSuccess">Successfully sent offer</h2>
+          <h2>Offers</h2>
+          <div class="comments" v-if="projectComments != null">
+            <div
+              class="comment"
+              v-for="comment in projectComments"
+              :key="comment.userID"
+            >
+              <div :key="comment.userID" class="comment-name">
+                <a>
+                  {{ comment.username }}
+                </a>
+                <div class="comment-buttons" v-if="userIsOwner">
+                  <a class="accept-offer offer-buttons button">Accept Offer</a>
+                  <a class="deny-offer offer-buttons button">Deny Offer</a>
+                </div>
+              </div>
+              <p>{{ comment.comment }}</p>
+            </div>
+          </div>
+          <div v-else>No offers yet...</div>
         </div>
       </div>
       <div class="project-details card">
@@ -73,6 +96,7 @@ import store from "@/Vuex/store";
 import { getProjectFromDB } from "@/firebase/firebase";
 import { getProfilePictureURL } from "@/firebase/firebase";
 import { expressInterest } from "@/firebase/firebase";
+import { getProjectComments } from "@/firebase/firebase";
 export default {
   data() {
     return {
@@ -80,12 +104,16 @@ export default {
       profilePicURL: "",
       expressInterest: false,
       newcomment: "",
-      expressSuccess: false
+      expressSuccess: false,
+      projectComments: null
     };
   },
   computed: {
     userIsAuth() {
       return store.state.userIsAuth;
+    },
+    userIsOwner() {
+      return this.project.userID == store.state.userID;
     }
   },
   mounted() {
@@ -94,6 +122,10 @@ export default {
   methods: {
     goToPage(url) {
       this.$router.push(url);
+    },
+    goToProjectEdit() {
+      store.commit("setPassThrough", this.project);
+      this.$router.push(`/editproject/${this.project.id}`);
     },
     getPicURL() {
       getProfilePictureURL(this.project.userID).then(url => {
@@ -115,11 +147,26 @@ export default {
       // TODO add profile picture to passthrough
       if (passThrough) {
         this.project = passThrough;
+        getProjectComments(passThrough.id)
+          .then(comments => {
+            this.projectComments = comments;
+          })
+          .catch(error => {
+            console.log(error);
+          });
         this.getPicURL();
       } else {
         getProjectFromDB(this.$route.params.projectID)
           .then(project => {
             this.project = project;
+            getProjectComments(project.id)
+              .then(comments => {
+                this.projectComments = comments;
+              })
+              .catch(error => {
+                console.log(error);
+              });
+
             this.getPicURL();
           })
           .catch(error => {
@@ -132,6 +179,39 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.accept-offer {
+  background-color: rgb(19, 206, 102);
+}
+.deny-offer {
+  background-color: #f56c6c;
+}
+.offer-buttons {
+  padding: 10px;
+  border: none;
+  margin: 0 5px 0 5px;
+}
+.comment-buttons {
+  float: right;
+}
+.comment {
+  margin-top: 20px;
+  text-align: left;
+  border: 1px solid #ebeef5;
+  padding: 0 20px 20px 20px;
+  border-radius: 4px;
+}
+.comment-name {
+  padding: 15px 0 15px 0;
+  border-bottom: 1px solid #ebeef5;
+  font-size: 20px;
+}
+.edit-link {
+  float: right;
+  color: #409eff;
+}
+.edit-link:hover {
+  cursor: pointer;
+}
 .project-details {
   text-align: center !important;
 }
