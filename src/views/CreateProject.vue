@@ -65,7 +65,7 @@ export default {
           label: "Backend"
         },
         {
-          value: "Penetration testing",
+          value: "Pen testing",
           label: "Penetration testing"
         },
         {

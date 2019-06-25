@@ -1,33 +1,34 @@
 <template>
-  <transition name="slide">
-    <div class="sidenav" :class="navActive" v-if="getNavActive">
-      <div class="sidenav-content">
-        <p class="underline">Filters</p>
+  <!-- <transition name="slide"> -->
+  <div class="sidenav" :class="navActive">
+    <div class="sidenav-content">
+      <p class="underline">Filters</p>
+      <el-checkbox
+        :indeterminate="isIndeterminate"
+        v-model="checkAll"
+        @change="handleCheckAllChange"
+        class="cat-check"
+        >All</el-checkbox
+      >
+      <el-checkbox-group
+        v-model="checkedCategories"
+        @change="handleCheckedCatChange"
+      >
         <el-checkbox
-          :indeterminate="isIndeterminate"
-          v-model="checkAll"
-          @change="handleCheckAllChange"
-          class="cat-check"
-          >All</el-checkbox
+          v-for="category in categories"
+          :label="category"
+          :key="category"
+          class="cat-check cat-check-minor"
+          >{{ category }}</el-checkbox
         >
-        <el-checkbox-group
-          v-model="checkedCategories"
-          @change="handleCheckedCatChange"
-        >
-          <el-checkbox
-            v-for="category in categories"
-            :label="category"
-            :key="category"
-            class="cat-check cat-check-minor"
-            >{{ category }}</el-checkbox
-          >
-        </el-checkbox-group>
-      </div>
+      </el-checkbox-group>
     </div>
-  </transition>
+  </div>
+  <!-- </transition> -->
 </template>
 
 <script>
+import store from "@/Vuex/store";
 const categories = ["Frontend", "Backend", "Pen testing", "Other"];
 export default {
   data() {
@@ -52,11 +53,23 @@ export default {
     },
     toggleNav() {
       this.navActive = !this.navActive;
+    },
+    setFilters() {
+      const category = store.state.projectCategory;
+      console.log(category);
+      if (category) {
+        this.checkedCategories = [category];
+        this.isIndeterminate = true;
+        // store.commit("setCategory", null);
+      }
     }
+  },
+  mounted() {
+    this.setFilters();
   },
   computed: {
     getNavActive() {
-      return this.$route.name == "projects" || this.navActive;
+      return this.$route.name == "projects";
     }
   }
 };
@@ -83,14 +96,14 @@ export default {
   background-color: white;
   padding: 15px;
 }
-.slide-leave-active,
-.slide-enter-active {
-  transition: left 0.4s;
-}
-.slide-enter,
-.slide-leave-to {
-  left: -150px;
-}
+// .slide-leave-active,
+// .slide-enter-active {
+//   transition: left 0.4s;
+// }
+// .slide-enter,
+// .slide-leave-to {
+//   left: -150px;
+// }
 .sidenav-content {
   margin-top: 80px;
 }

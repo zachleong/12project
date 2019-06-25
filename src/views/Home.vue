@@ -35,11 +35,11 @@
           </div>
           <div
             class="grid-item pentest"
-            @click="goToCat('/projects', 'Penetration testing')"
+            @click="goToCat('/projects', 'Pen testing')"
           >
             <img src="../assets/pentest.svg" alt="Pentest" class="img-art" />
           </div>
-          <div class="grid-item other" @click="goToCat('/projects', 'other')">
+          <div class="grid-item other" @click="goToCat('/projects', 'Other')">
             <img src="../assets/other.svg" alt="Other" class="img-art" />
           </div>
 

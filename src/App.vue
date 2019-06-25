@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Navbar />
-    <SideNav />
+    <transition name="pageTrans">
+      <SideNav v-if="onProjects" />
+    </transition>
     <transition name="pageTrans" mode="out-in">
       <router-view />
     </transition>
@@ -15,6 +17,11 @@ export default {
   components: {
     Navbar,
     SideNav
+  },
+  computed: {
+    onProjects() {
+      return this.$route.name == "projects";
+    }
   }
 };
 </script>
