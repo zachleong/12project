@@ -102,16 +102,6 @@ export default {
         this.profilePicURL = url;
       });
     },
-    sendOffer() {
-      console.log("sending offer");
-      expressInterest(this.project.id, this.newcomment)
-        .then(() => {
-          this.expressSuccess = true;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
     setProject() {
       const passThrough = store.state.passThrough;
       // TODO add profile picture to passthrough
@@ -223,7 +213,7 @@ export default {
   text-align: left;
   border: 1px solid #ebeef5;
   border-radius: 4px;
-  padding: 2%;
+  padding: 0 2% 2% 2%;
 }
 .project-author {
   text-align: left;
