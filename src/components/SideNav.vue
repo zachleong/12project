@@ -2,20 +2,54 @@
   <transition name="slide">
     <div class="sidenav" :class="navActive" v-if="getNavActive">
       <div class="sidenav-content">
-        <p>Filters</p>
+        <p class="underline">Filters</p>
+        <el-checkbox
+          :indeterminate="isIndeterminate"
+          v-model="checkAll"
+          @change="handleCheckAllChange"
+          class="cat-check"
+          >All</el-checkbox
+        >
+        <el-checkbox-group
+          v-model="checkedCategories"
+          @change="handleCheckedCatChange"
+        >
+          <el-checkbox
+            v-for="category in categories"
+            :label="category"
+            :key="category"
+            class="cat-check cat-check-minor"
+            >{{ category }}</el-checkbox
+          >
+        </el-checkbox-group>
       </div>
     </div>
   </transition>
 </template>
 
 <script>
+const categories = ["Frontend", "Backend", "Pen testing", "Other"];
 export default {
   data() {
     return {
-      navActive: false
+      navActive: false,
+      checkAll: true,
+      checkedCategories: categories,
+      categories: categories,
+      isIndeterminate: false
     };
   },
   methods: {
+    handleCheckAllChange(val) {
+      this.checkedCategories = val ? categories : [];
+      this.isIndeterminate = false;
+    },
+    handleCheckedCatChange(value) {
+      let checkedCount = value.length;
+      this.checkAll = checkedCount === this.categories.length;
+      this.isIndeterminate =
+        checkedCount > 0 && checkedCount < this.categories.length;
+    },
     toggleNav() {
       this.navActive = !this.navActive;
     }
@@ -29,16 +63,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.cat-check-minor {
+  margin-left: 10px;
+}
+.cat-check {
+  float: left;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
 .sidenav {
-  z-index: -1;
+  //   z-index: -1;
   position: absolute;
   height: 100%;
-  width: 150px;
+  width: 130px;
   top: 0;
   left: 0;
   -webkit-box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
   background-color: white;
+  padding: 15px;
 }
 .slide-leave-active,
 .slide-enter-active {
