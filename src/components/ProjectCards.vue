@@ -36,10 +36,25 @@ export default {
     this.getProjects();
   },
   methods: {
+    filterProjects(projects) {
+      const category = store.state.projectCategory;
+      if (category) {
+        let _projects = [];
+        projects.forEach(project => {
+          if (project.categories && project.categories.includes(category)) {
+            _projects.push(project);
+          }
+        });
+        store.commit("setCategory", null);
+        return _projects;
+      } else {
+        return projects;
+      }
+    },
     getProjects() {
       getProjectsFromDB("Projects")
         .then(projects => {
-          this.projects = projects;
+          this.projects = this.filterProjects(projects);
         })
         .catch(error => {
           console.log(error);

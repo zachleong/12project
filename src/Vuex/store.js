@@ -12,7 +12,8 @@ export default new Vuex.Store({
     userIsAuth: null,
     loading: false,
     //pass through data from one route to another
-    passThrough: null
+    passThrough: null,
+    projectCategory: null
   },
   mutations: {
     setUserID(state, payload) {
@@ -32,6 +33,9 @@ export default new Vuex.Store({
     },
     setPassThrough(state, payload) {
       this.state.passThrough = payload;
+    },
+    setCategory(state, payload) {
+      this.state.projectCategory = payload;
     },
     loading(state, payload) {
       this.state.loading = payload;

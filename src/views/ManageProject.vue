@@ -52,9 +52,9 @@
         </div>
       </div>
       <div class="project-details card">
-        <h3 class="underline">Technologies:</h3>
-        <p v-for="technology in project.technologies" :key="technology">
-          {{ technology }}
+        <h3 class="underline">Categories:</h3>
+        <p v-for="category in project.categories" :key="category">
+          {{ category }}
         </p>
         <h3 class="underline overline">Tags:</h3>
         <p v-for="tag in project.tags" :key="tag">

@@ -8,7 +8,7 @@
       class="input project-in"
     />
     <el-select
-      v-model="project.technologies"
+      v-model="project.categories"
       multiple
       placeholder="Technologies"
       class="lang-select"
@@ -50,30 +50,23 @@ export default {
       project: {
         projectTitle: "",
         projectDesc: "",
-        technologies: [],
+        // technologies: [],
+        categories: "",
         tags: ""
       },
       projectIsSet: false,
       options: [
         {
-          value: "Javascript",
-          label: "Javascript"
+          value: "Frontend",
+          label: "Frontend"
         },
         {
-          value: "HTML",
-          label: "HTML"
+          value: "Backend",
+          label: "Backend"
         },
         {
-          value: "CSS",
-          label: "CSS"
-        },
-        {
-          value: "Python",
-          label: "Python"
-        },
-        {
-          value: "C/C++",
-          label: "C/C++"
+          value: "Penetration testing",
+          label: "Penetration testing"
         }
       ]
     };

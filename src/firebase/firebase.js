@@ -55,7 +55,7 @@ const projectFromDoc = doc => {
     desc: doc.data().projectDesc,
     userID: doc.data().userID,
     userName: doc.data().userName,
-    technologies: doc.data().technologies,
+    categories: doc.data().categories,
     tags: doc.data().tags
   };
 };
