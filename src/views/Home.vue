@@ -20,13 +20,22 @@
         <button class="big-btn" @click="goToPage(`/guide`)">Guide</button>
         <br />
         <div class="grid-container">
-          <div class="grid-item frontend" @click="goToPage('/projects')">
+          <div
+            class="grid-item frontend"
+            @click="goToCat('/projects', 'Frontend')"
+          >
             <img src="../assets/frontend.svg" alt="Frontend" class="img-art" />
           </div>
-          <div class="grid-item backend" @click="goToPage('/projects')">
+          <div
+            class="grid-item backend"
+            @click="goToCat('/projects', 'Backend')"
+          >
             <img src="../assets/backend.svg" alt="Backend" class="img-art" />
           </div>
-          <div class="grid-item pentest" @click="goToPage('/projects')">
+          <div
+            class="grid-item pentest"
+            @click="goToCat('/projects', 'Penetration testing')"
+          >
             <img src="../assets/pentest.svg" alt="Pentest" class="img-art" />
           </div>
           <div>
@@ -55,6 +64,10 @@ export default {
   },
   methods: {
     goToPage(url) {
+      this.$router.push(url);
+    },
+    goToCat(url, cat) {
+      store.commit("setCategory", cat);
       this.$router.push(url);
     }
   },
