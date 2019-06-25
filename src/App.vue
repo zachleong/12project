@@ -102,4 +102,7 @@ h3 {
   border-top: 1px solid #ebeef5;
   padding-top: 15px;
 }
+.twenty {
+  font-size: 20px;
+}
 </style>

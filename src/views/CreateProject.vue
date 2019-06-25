@@ -112,7 +112,7 @@ export default {
 .el-input__inner {
   font-size: 16px !important;
   font-family: "Nunito", sans-serif;
-  height: 44px !important;
+  min-height: 44px !important;
   border: 1px solid #ebeef5 !important;
 }
 </style>

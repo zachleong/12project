@@ -19,6 +19,7 @@
         <h1 class="welcome-title">Welcome back, {{ userName }}</h1>
         <button class="big-btn" @click="goToPage(`/guide`)">Guide</button>
         <br />
+        <p class="twenty" style="margin-top: 40px;">Find Projects:</p>
         <div class="grid-container">
           <div
             class="grid-item frontend"
@@ -99,7 +100,7 @@ export default {
   vertical-align: middle;
 }
 .grid-container {
-  margin-top: 60px;
+  margin-top: 30px;
   display: inline-grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-auto-rows: 150px;

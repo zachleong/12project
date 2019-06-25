@@ -167,6 +167,7 @@ export const createAccount = (username, email, password) => {
         displayName: username,
         userID: usercred.user.uid
       });
+      store.commit("setUserName", username);
     });
 };
 export const getMyInfo = () => {
