@@ -91,7 +91,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .other {
-  //   background-color: #f1a533;
   background-color: #f89e36;
 }
 .frontend {

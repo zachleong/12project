@@ -6,12 +6,13 @@
     <div class="grid-item backend" @click="goToCat('/projects', 'Backend')">
       <img src="../assets/backend.svg" alt="Backend" class="img-art" />
     </div>
-    <div
-      class="grid-item pentest"
-      @click="goToCat('/projects', 'Penetration testing')"
-    >
+    <div class="grid-item pentest" @click="goToCat('/projects', 'Pen testing')">
       <img src="../assets/pentest.svg" alt="Pentest" class="img-art" />
     </div>
+    <div class="grid-item other" @click="goToCat('/projects', 'Other')">
+      <img src="../assets/other.svg" alt="Other" class="img-art" />
+    </div>
+
     <div>
       <p class="title">Frontend development</p>
     </div>
@@ -20,6 +21,9 @@
     </div>
     <div>
       <p class="title">Penetration testing</p>
+    </div>
+    <div>
+      <p class="title">Other</p>
     </div>
   </div>
 </template>
@@ -39,6 +43,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.other {
+  background-color: #f89e36;
+}
 .frontend {
   background-color: #13ce66;
 }
@@ -58,10 +65,10 @@ export default {
 .grid-container {
   margin-top: 60px;
   display: inline-grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-rows: 250px;
   grid-column-gap: 50px;
-  width: 65%;
+  width: 75%;
 }
 .grid-item {
   //   padding: 75px;
