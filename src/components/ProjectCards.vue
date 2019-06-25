@@ -1,7 +1,7 @@
 <template>
   <transition name="pageTrans">
     <div class="projectcards" v-if="projects">
-      <template v-for="project in projects">
+      <template v-for="project in projectsFiltered">
         <Card :key="project.id" class="box-card">
           <template v-slot:header>
             <div @click="goToProjectInfo(project)" class="card-header">
@@ -29,23 +29,44 @@ export default {
   data() {
     return {
       //Should this changing data be in here?
-      projects: null
+      projects: null,
+      projectsFiltered: null
     };
+  },
+  computed: {
+    updateFilter() {
+      return store.state.filterUpdate;
+    }
+  },
+  watch: {
+    updateFilter(newval) {
+      if (newval == true) {
+        const newProjects = this.filterProjects(this.projects);
+        this.projectsFiltered = newProjects;
+        store.commit("updateFilter", false);
+      }
+    }
   },
   mounted() {
     this.getProjects();
   },
   methods: {
     filterProjects(projects) {
-      const category = store.state.projectCategory;
-      if (category) {
+      const categories = store.state.projectCategories;
+      if (categories) {
         let _projects = [];
         projects.forEach(project => {
-          if (project.categories && project.categories.includes(category)) {
+          let catInProj = false;
+          project.categories.forEach(cat => {
+            if (categories.includes(cat)) {
+              catInProj = true;
+            }
+          });
+          if (catInProj) {
             _projects.push(project);
           }
         });
-        store.commit("setCategory", null);
+        store.commit("setCategories", null);
         return _projects;
       } else {
         return projects;
@@ -54,7 +75,8 @@ export default {
     getProjects() {
       getProjectsFromDB("Projects")
         .then(projects => {
-          this.projects = this.filterProjects(projects);
+          this.projects = projects;
+          this.projectsFiltered = this.filterProjects(projects);
         })
         .catch(error => {
           console.log(error);

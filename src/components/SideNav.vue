@@ -50,15 +50,16 @@ export default {
       this.checkAll = checkedCount === this.categories.length;
       this.isIndeterminate =
         checkedCount > 0 && checkedCount < this.categories.length;
+      store.commit("updateFilter", true);
+      store.commit("setCategories", this.checkedCategories);
     },
     toggleNav() {
       this.navActive = !this.navActive;
     },
     setFilters() {
-      const category = store.state.projectCategory;
-      console.log(category);
-      if (category) {
-        this.checkedCategories = [category];
+      const categories = store.state.projectCategories;
+      if (categories) {
+        this.checkedCategories = categories;
         this.isIndeterminate = true;
         // store.commit("setCategory", null);
       }

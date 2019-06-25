@@ -75,7 +75,7 @@ export default {
       this.$router.push(url);
     },
     goToCat(url, cat) {
-      store.commit("setCategory", cat);
+      store.commit("setCategories", [cat]);
       this.$router.push(url);
     }
   },
