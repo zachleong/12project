@@ -83,6 +83,7 @@ export default {
   float: left;
   margin-top: 2px;
   margin-bottom: 2px;
+  font-family: "Nunito", sans-serif;
 }
 .sidenav {
   //   z-index: -1;
