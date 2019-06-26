@@ -1,20 +1,7 @@
 <template>
   <div>
     <!-- dropdown needs to be outside of navbar because of z-index cooks -->
-    <transition name="drop">
-      <ul
-        class="dropdown"
-        v-if="showDropdown"
-        @mouseleave="showDropdown = false"
-      >
-        <li class="dropdown-el" @click="signout">
-          Sign Out
-        </li>
-        <li class="dropdown-el">
-          <router-link to="/myprofile">Profile</router-link>
-        </li>
-      </ul>
-    </transition>
+
     <div class="navbar">
       <!-- <a class="brand navlink">
         <h2>Git Money</h2>
@@ -35,11 +22,7 @@
         <router-link to="/myprojects" class="navlink">My Projects</router-link>
       </template>
       <div class="rightContent">
-        <span
-          class="profile-dropdown"
-          v-if="userIsAuth == true"
-          @click="showDropdown = true"
-        >
+        <span class="profile-dropdown" v-if="userIsAuth == true">
           <span class="profile-overflow"
             ><img
               v-bind:src="imgurl"
@@ -48,7 +31,20 @@
               v-if="imgurl"
             />
           </span>
+          <ul class="dropdown">
+            <li class="dropdown-el button" @click="signout">
+              Sign Out
+            </li>
+            <li class="dropdown-el">
+              <router-link
+                style="text-decoration:none; color: black;"
+                to="/myprofile"
+                >Profile</router-link
+              >
+            </li>
+          </ul>
         </span>
+
         <!-- <el-button
         v-if="userIsAuth === true"
         v-on:click="signOut"
@@ -122,9 +118,7 @@ export default {
 .dropdown-el {
   list-style: none;
   text-align: center;
-  //   text-decoration: none;
-  color: black;
-  padding: 15px;
+  text-decoration: none !important;
 }
 .dropdown-el:hover {
   cursor: pointer;
@@ -135,14 +129,21 @@ export default {
   display: inline-block;
   position: absolute;
   text-align: center;
-  top: 70px;
+  top: 60px;
   width: 150px;
   height: 150px;
   right: 0;
   background-color: white;
-  -webkit-box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #ebeef5;
   border-bottom-left-radius: 10px;
+  transition-duration: 0.4s;
+  opacity: 0;
+  visibility: hidden;
+}
+.profile-dropdown:hover .dropdown {
+  opacity: 1;
+  top: 71px;
+  visibility: visible;
 }
 .profile-dropdown {
   text-decoration: none;
