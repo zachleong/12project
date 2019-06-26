@@ -20,8 +20,10 @@ firebase.auth().onAuthStateChanged(user => {
     console.log(`user is ${user.email}`);
     store.commit("setAuthUser", true);
     store.commit("setUserEmail", user.email);
-    store.commit("setUserName", user.displayName);
     store.commit("setUserID", user.uid);
+    if (user.displayName) {
+      store.commit("setUserName", user.displayName);
+    }
     getProfilePictureURL(user.uid).then(url => {
       store.commit("setUserPictureURL", url);
     });
