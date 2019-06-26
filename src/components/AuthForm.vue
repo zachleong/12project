@@ -35,37 +35,32 @@ export default {
   data() {
     return {
       email: "",
-      password: "",
-      formIsValid: true
+      password: ""
     };
   },
   methods: {
     onSubmit(e) {
       e.preventDefault();
-      if (!this.formIsValid) {
-        console.log("form not valid");
-      } else {
-        store.commit("loading", true);
-        firebase
-          .auth()
-          .signInWithEmailAndPassword(this.email, this.password)
-          .then(() => {
-            this.$router.push({ name: "home" });
-          })
-          .catch(error => {
-            console.log(error);
-          })
-          .finally(() => {
-            store.commit("loading", false);
-          });
-      }
+      store.commit("loading", true);
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          this.$router.push({ name: "home" });
+        })
+        .catch(error => {
+          console.log(error);
+        })
+        .finally(() => {
+          store.commit("loading", false);
+        });
     },
     googleSignin(e) {
       e.preventDefault();
       const googleProvider = new firebase.auth.GoogleAuthProvider();
       firebase
         .auth()
-        .signInWithRedirect(googleProvider)
+        .signInWithPopup(googleProvider)
         .then(() => {
           this.$router.push({ name: "home" });
         })

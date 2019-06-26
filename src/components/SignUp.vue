@@ -29,19 +29,67 @@
 <script>
 import { createAccount } from "@/firebase/firebase";
 import store from "@/Vuex/store";
+import { allowedChars } from "@/AllowedChars";
 export default {
   data() {
     return {
       email: "",
       password: "",
-      username: "",
-      formIsValid: true
+      username: ""
     };
   },
   methods: {
+    emailValid(email) {
+      console.log(email);
+      let regex = /\S+@\S+\.\S+/;
+      if (regex.test(email)) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    nameValid(username) {
+      console.log(username);
+      for (let char of username) {
+        if (!allowedChars.includes(char)) {
+          return false;
+        }
+      }
+      return true;
+    },
+    pwdValid(password) {
+      let numbercount = 0;
+      if (password.length < 8) {
+        return false;
+      }
+      for (let char of password) {
+        //If character is not in allowed characters
+        if (!allowedChars.includes(char)) {
+          return false;
+        }
+        if (!isNaN(char)) {
+          numbercount++;
+        }
+      }
+      if (numbercount < 2) {
+        return false;
+      }
+      return true;
+    },
+    formIsValid() {
+      if (
+        this.pwdValid(this.password) &&
+        this.emailValid(this.email) &&
+        this.nameValid(this.username)
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     onSubmit(e) {
       e.preventDefault();
-      if (!this.formIsValid) {
+      if (!this.formIsValid()) {
         console.log("form not valid");
       } else {
         store.commit("loading", true);

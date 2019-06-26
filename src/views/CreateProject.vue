@@ -10,7 +10,7 @@
     <el-select
       v-model="project.categories"
       multiple
-      placeholder="Technologies"
+      placeholder="Categories"
       class="lang-select"
     >
       <el-option
