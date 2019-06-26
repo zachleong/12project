@@ -1,11 +1,6 @@
 <template>
   <div class="projects">
     <h1 class="header">Projects</h1>
-    <input
-      placeholder="Search for projects"
-      v-model="searchInput"
-      class="input search-input"
-    />
     <ProjectCards />
   </div>
 </template>
@@ -22,8 +17,7 @@ export default {
   },
   data() {
     return {
-      user: store.state.userEmail,
-      searchInput: ""
+      user: store.state.userEmail
     };
   },
   computed: {
@@ -33,8 +27,4 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
-.search-input {
-  width: 75%;
-}
-</style>
+<style lang="scss" scoped></style>
