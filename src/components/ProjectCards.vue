@@ -103,8 +103,12 @@ li {
   display: inline-block;
   margin: 0 10px;
 }
-.box-card {
+.projectcards {
   width: 75%;
+  display: inline-block;
+}
+.box-card {
+  width: 100%;
 }
 .card-header {
   padding: 18px 20px;
