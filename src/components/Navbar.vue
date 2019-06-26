@@ -129,20 +129,19 @@ export default {
   display: inline-block;
   position: absolute;
   text-align: center;
-  top: 60px;
+  top: 71px;
   width: 150px;
   height: 150px;
   right: 0;
   background-color: white;
   border: 1px solid #ebeef5;
   border-bottom-left-radius: 10px;
-  transition-duration: 0.4s;
+  transition-duration: 0.2s;
   opacity: 0;
   visibility: hidden;
 }
 .profile-dropdown:hover .dropdown {
   opacity: 1;
-  top: 71px;
   visibility: visible;
 }
 .profile-dropdown {
