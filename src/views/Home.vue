@@ -7,7 +7,7 @@
           <h2>A software collaboration platform</h2>
           <div class="button-container">
             <button class="big-btn" @click="goToPage(`/register`)">
-              Get started
+              Sign up
             </button>
             <button class="big-btn" @click="goToPage(`/about`)">About</button>
           </div>

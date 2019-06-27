@@ -119,7 +119,7 @@ export default new Router({
     {
       path: "/guide",
       name: "guide",
-      component: () => import("./views/Guide.vue")
+      component: () => import("./views/About.vue")
     }
   ]
 });

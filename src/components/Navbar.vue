@@ -58,7 +58,7 @@
           type="primary"
           class="button login-button"
         >
-          Login
+          Login/Register
         </button>
       </div>
     </div>

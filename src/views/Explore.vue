@@ -1,29 +1,35 @@
 <template>
-  <div class="grid-container">
-    <div class="grid-item frontend" @click="goToCat('/projects', 'Frontend')">
-      <img src="../assets/frontend.svg" alt="Frontend" class="img-art" />
-    </div>
-    <div class="grid-item backend" @click="goToCat('/projects', 'Backend')">
-      <img src="../assets/backend.svg" alt="Backend" class="img-art" />
-    </div>
-    <div class="grid-item pentest" @click="goToCat('/projects', 'Pen testing')">
-      <img src="../assets/pentest.svg" alt="Pen testing" class="img-art" />
-    </div>
-    <div class="grid-item other" @click="goToCat('/projects', 'Other')">
-      <img src="../assets/other.svg" alt="Other" class="img-art" />
-    </div>
+  <div>
+    <h1>Find projects:</h1>
+    <div class="grid-container">
+      <div class="grid-item frontend" @click="goToCat('/projects', 'Frontend')">
+        <img src="../assets/frontend.svg" alt="Frontend" class="img-art" />
+      </div>
+      <div class="grid-item backend" @click="goToCat('/projects', 'Backend')">
+        <img src="../assets/backend.svg" alt="Backend" class="img-art" />
+      </div>
+      <div
+        class="grid-item pentest"
+        @click="goToCat('/projects', 'Pen testing')"
+      >
+        <img src="../assets/pentest.svg" alt="Pen testing" class="img-art" />
+      </div>
+      <div class="grid-item other" @click="goToCat('/projects', 'Other')">
+        <img src="../assets/other.svg" alt="Other" class="img-art" />
+      </div>
 
-    <div>
-      <p class="title">Frontend development</p>
-    </div>
-    <div>
-      <p class="title">Backend development</p>
-    </div>
-    <div>
-      <p class="title">Penetration testing</p>
-    </div>
-    <div>
-      <p class="title">Other</p>
+      <div>
+        <p class="title">Frontend development</p>
+      </div>
+      <div>
+        <p class="title">Backend development</p>
+      </div>
+      <div>
+        <p class="title">Penetration testing</p>
+      </div>
+      <div>
+        <p class="title">Other</p>
+      </div>
     </div>
   </div>
 </template>
