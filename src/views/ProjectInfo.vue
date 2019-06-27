@@ -35,7 +35,7 @@
           @click="expressInterest = true"
           class="button expressInterest"
         >
-          Contribute to Project
+          Message the Owner
         </button>
         <div class="comments">
           <textarea
@@ -50,7 +50,7 @@
             v-if="expressInterest"
             @click="sendOffer"
           >
-            Send to Project manager
+            Send to Project Manager
           </button>
           <h2 v-if="expressSuccess">Successfully sent offer</h2>
           <h2>Offers</h2>

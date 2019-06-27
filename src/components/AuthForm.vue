@@ -17,10 +17,7 @@
         <button type="primary" @click="e => onSubmit(e)" class="button">
           Login
         </button>
-        <br />
-        <button @click="e => googleSignin(e)" class="button google-but">
-          Login with Google
-        </button>
+        <el-alert v-if="error != ''" :title="error" type="error" show-icon />
       </el-form-item>
     </el-form>
   </div>
@@ -35,7 +32,8 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      error: ""
     };
   },
   methods: {
@@ -49,23 +47,22 @@ export default {
           this.$router.push({ name: "home" });
         })
         .catch(error => {
-          console.log(error);
+          switch (error.code) {
+            case "auth/wrong-password":
+              this.error = "Wrong password";
+              break;
+            case "auth/invalid-email":
+              this.error = "Please enter a valid email";
+              break;
+            case "auth/user-not-found":
+              this.error = "There is no user with that email address";
+              break;
+            default:
+              this.error = error.message;
+          }
         })
         .finally(() => {
           store.commit("loading", false);
-        });
-    },
-    googleSignin(e) {
-      e.preventDefault();
-      const googleProvider = new firebase.auth.GoogleAuthProvider();
-      firebase
-        .auth()
-        .signInWithPopup(googleProvider)
-        .then(() => {
-          this.$router.push({ name: "home" });
-        })
-        .catch(error => {
-          console.log(error.message);
         });
     }
   }
@@ -82,5 +79,8 @@ export default {
 }
 .google-but:hover {
   background-color: #69c99e;
+}
+button {
+  margin-bottom: 15px;
 }
 </style>

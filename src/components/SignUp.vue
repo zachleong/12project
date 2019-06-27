@@ -2,7 +2,7 @@
   <div>
     <h1>Register</h1>
     <el-form>
-      <el-form-item label="Display Name">
+      <el-form-item label="Username">
         <el-input
           placeholder="Who do you want to be known as?"
           v-model="username"
@@ -22,6 +22,30 @@
       <el-form-item>
         <button class="button" @click="e => onSubmit(e)">Register</button>
       </el-form-item>
+      <el-alert
+        v-if="usernameError != ''"
+        :title="usernameError"
+        type="error"
+        show-icon
+      />
+      <el-alert
+        v-if="emailError != ''"
+        :title="emailError"
+        type="error"
+        show-icon
+      />
+      <el-alert
+        v-if="passwordError != ''"
+        :title="passwordError"
+        type="error"
+        show-icon
+      />
+      <el-alert
+        v-if="otherError != ''"
+        :title="otherError"
+        type="error"
+        show-icon
+      />
     </el-form>
   </div>
 </template>
@@ -35,7 +59,11 @@ export default {
     return {
       email: "",
       password: "",
-      username: ""
+      username: "",
+      emailError: "",
+      usernameError: "",
+      passwordError: "",
+      otherError: ""
     };
   },
   methods: {
@@ -45,13 +73,20 @@ export default {
       if (regex.test(email)) {
         return true;
       } else {
+        this.emailError = "Please enter a valid email";
         return false;
       }
     },
     nameValid(username) {
       console.log(username);
+      if (username.length < 8) {
+        this.usernameError = "Your username must have at least 8 characters";
+        return false;
+      }
       for (let char of username) {
         if (!allowedChars.includes(char)) {
+          this.usernameError =
+            "Your username can only have numbers and letters";
           return false;
         }
       }
@@ -60,11 +95,14 @@ export default {
     pwdValid(password) {
       let numbercount = 0;
       if (password.length < 8) {
+        this.passwordError = "Your password must be at least 8 characters";
         return false;
       }
       for (let char of password) {
         //If character is not in allowed characters
         if (!allowedChars.includes(char)) {
+          this.passwordError =
+            "Your password can only contain numbers and letters";
           return false;
         }
         if (!isNaN(char)) {
@@ -72,16 +110,20 @@ export default {
         }
       }
       if (numbercount < 2) {
+        this.passwordError = "Your password must have at least 2 numbers in it";
         return false;
       }
       return true;
     },
     formIsValid() {
-      if (
-        this.pwdValid(this.password) &&
-        this.emailValid(this.email) &&
-        this.nameValid(this.username)
-      ) {
+      this.otherError = "";
+      this.emailError = "";
+      this.passwordError = "";
+      this.usernameError = "";
+      const validpass = this.pwdValid(this.password);
+      const validemail = this.emailValid(this.email);
+      const validusername = this.nameValid(this.username);
+      if (validpass && validemail && validusername) {
         return true;
       } else {
         return false;
@@ -100,6 +142,7 @@ export default {
           })
           .catch(error => {
             store.commit("loading", false);
+            this.otherError = error.message;
             console.log(error);
           });
       }
