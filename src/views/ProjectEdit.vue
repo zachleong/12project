@@ -32,7 +32,7 @@
       <input
         type="text"
         v-model="projectTags"
-        placeholder="Tags"
+        placeholder="Comma separated tags e.g: html, javascript, css"
         class="input project-tags"
       />
       <br />
@@ -124,11 +124,17 @@ export default {
 </script>
 
 <style lang="scss">
+.delete-button:hover {
+  background-color: #f56c6c;
+}
 .delete-button {
   //   background-color: #42b983;
   background-color: #f56c6c;
   border: none;
   margin: 5px;
+}
+.save-button:hover {
+  background-color: rgb(19, 206, 102);
 }
 .save-button {
   //   background-color: #42b983;

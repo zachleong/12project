@@ -31,7 +31,7 @@
     <input
       type="text"
       v-model="project.tags"
-      placeholder="Tags"
+      placeholder="Comma separated tags e.g: html, javascript, css"
       class="input project-tags"
     />
     <br />
