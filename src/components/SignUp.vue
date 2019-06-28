@@ -79,8 +79,8 @@ export default {
     },
     nameValid(username) {
       console.log(username);
-      if (username.length < 8) {
-        this.usernameError = "Your username must have at least 8 characters";
+      if (username.length < 5) {
+        this.usernameError = "Your username must have at least 5 characters";
         return false;
       }
       for (let char of username) {
