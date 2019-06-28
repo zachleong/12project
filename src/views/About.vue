@@ -2,34 +2,35 @@
   <div class="about">
     <h1 class="underline">About:</h1>
     <p>
-      Git Money is an software collaboration platform. It is aimed at allowing
-      software developers to easily find projects they are interested in working
-      on. Once you have found a project, you may offer to contribute for free or
-      be request to be contracted.
+      Git Money is a software collaboration platform. It enables software
+      developers to easily find projects they are interested in working on. Once
+      you have found a project, you may offer to contribute for free or request
+      to be contracted.
     </p>
     <h1 class="underline">Guide:</h1>
     <p v-if="!userIsAuth">Register:</p>
     <ul v-if="!userIsAuth">
       <li>
-        New users should first register by clicking on the Login/Register button
-        in the top right-hand corner and then click on the Guide button for
-        further instructions.
+        New users can register by clicking on the Login/Register button in the
+        top right-hand corner and then click on the Guide button for further
+        instructions.
       </li>
     </ul>
     <p v-if="!userIsAuth">Explore:</p>
     <ul v-if="!userIsAuth">
       <li>
         The explore page presents four categories which will take you to the
-        projects which are under that category
+        projects under that category
       </li>
     </ul>
     <p>Browse Projects:</p>
     <ul>
       <li>
         You can click on the "Browse Projects" link in the navbar to visit the
-        projects page where you can find new projects and filter based on your
+        projects page where you will find new projects and filter based on your
         preferences
       </li>
+      <p>Or</p>
       <li>
         You can also click on the badges in your home page to visit the projects
         page for the category that you clicked on
@@ -38,23 +39,23 @@
     <p>Projects:</p>
     <ul>
       <li>
-        Once you have found a project that you are interested in, you can click
+        Once you have found a project that you are interested in you can click
         on the project and be taken to the project page.
       </li>
       <li>
-        On the project page, you can see more details about the project. You can
+        On the project page you can see more details about the project. You can
         click on the owner's name to be taken to the owner's profile page to
         find out more about them.
       </li>
       <li>
-        Underneath the project's about section, you can find comments from other
-        users offering how they might like to help with the project. Here you
-        can add your own comment outlining how you might like to help with the
-        project.
+        Underneath the project's “about” section you can find comments from
+        other users offering how they might like to help with the project. Here
+        you can add your own comment outlining how you might like to help with
+        the project.
       </li>
       <li>
-        After commenting on a project, the owner will either approve or deny
-        your request and will then contact you where you and the owner will
+        After reviewing comments on a project, the owner will either approve or
+        deny your request and will then contact you where you and the owner will
         communicate how you will go about contributing to the project.
       </li>
     </ul>
@@ -65,14 +66,14 @@
         you to the page where you can create and manage your projects
       </li>
       <li>
-        To create a new project, click on the "new project" link. You will be
+        To create a new project click on the "new project" link. You will be
         taken to the "create project" page where you can create your own
         project. Pick a title, the category that it falls under, fill out a
-        desciption. Your project will now be viewable by all users.
+        description. Your project will now be viewable by all users.
       </li>
       <li>
-        You project will now be easily accessible to you through the "My
-        Projects" page. After someone takes interest in your project and
+        Your project will now be easily accessible to you through the "My
+        Projects" page. After someone takes an interest in your project and
         comments, you will see their comment on your project page and you can
         either approve or deny their request.
       </li>
@@ -85,9 +86,8 @@
       </li>
       <li>
         On your profile page will be an edit link. Here you can add a
-        description of yourself and change your profile picture. Other users
-        will see your description and profile picture when they visit your
-        profile.
+        description of yourself or change your profile picture. Other users will
+        see your description and profile picture when they visit your profile.
       </li>
     </ul>
   </div>
