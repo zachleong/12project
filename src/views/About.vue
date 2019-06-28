@@ -3,19 +3,20 @@
     <h1 class="underline">About:</h1>
     <p>
       Git Money is a software collaboration platform. It enables software
-      developers to easily find projects they are interested in working on. It
-      differs from sites like Git-Hub as this site's focus is on helping users
-      find new projects, instead of hosting the project itself. Once you have
-      found a project, you may offer to contribute for free or request to be
-      contracted.
+      developers to easily find projects they are interested in working on. Git
+      Money differs from sites like Git-Hub as this site's focus is on helping
+      users find new projects, instead of hosting the project itself. Once you
+      have found a project, you may offer to contribute for free or request to
+      be contracted.
     </p>
     <h1 class="underline">Guide:</h1>
     <p v-if="!userIsAuth">Register:</p>
     <ul v-if="!userIsAuth">
       <li>
-        New users can register by clicking on the Login/Register button in the
-        top right-hand corner and then click on the Guide button for further
-        instructions.
+        New users can register by clicking
+        <a class="reg-link" @click="goToPage(`/register`)">here</a> or on the
+        Login/Register button in the top right-hand corner. Once you are logged
+        in, click on the Guide button for further instructions.
       </li>
     </ul>
     <p v-if="!userIsAuth">Explore:</p>
@@ -84,7 +85,8 @@
     <ul>
       <li>
         If you hover over the profile picture in the top right-hand corner, you
-        can either sign out, or go to your profile page.
+        can either sign out, or go to your
+        <a class="reg-link" @click="goToPage(`/myprofile`)">profile page</a>.
       </li>
       <li>
         On your profile page will be an edit link. Here you can add a
@@ -101,11 +103,22 @@ export default {
     userIsAuth() {
       return store.state.userIsAuth;
     }
+  },
+  methods: {
+    goToPage(url) {
+      this.$router.push(url);
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.reg-link:hover {
+  cursor: pointer;
+}
+.reg-link {
+  color: #409eff;
+}
 .about {
   display: inline-block;
   width: 75%;
