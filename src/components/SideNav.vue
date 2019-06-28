@@ -41,12 +41,14 @@ export default {
     };
   },
   methods: {
+    // Handle the check all box change
     handleCheckAllChange(val) {
       this.checkedCategories = val ? categories : [];
       this.isIndeterminate = false;
       store.commit("updateFilter", true);
       store.commit("setCategories", this.checkedCategories);
     },
+    // Handle the checkbox change
     handleCheckedCatChange(value) {
       let checkedCount = value.length;
       this.checkAll = checkedCount === this.categories.length;
@@ -55,9 +57,7 @@ export default {
       store.commit("updateFilter", true);
       store.commit("setCategories", this.checkedCategories);
     },
-    toggleNav() {
-      this.navActive = !this.navActive;
-    },
+    // Set the filters when entering page from a category
     setFilters() {
       const categories = store.state.projectCategories;
       if (categories) {

@@ -135,6 +135,7 @@ export default {
       deleteComment(this.project.id, uid)
         .then(() => {
           console.log("deleted comment");
+          // Removed comment from page on delete
           for (let index in this.projectComments) {
             if (this.projectComments[index].userID == uid) {
               this.projectComments.splice(index, 1);
@@ -169,7 +170,6 @@ export default {
     },
     setProject() {
       const passThrough = store.state.passThrough;
-      // TODO add profile picture to passthrough
       if (passThrough) {
         this.project = passThrough;
         getProjectComments(passThrough.id)

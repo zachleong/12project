@@ -104,6 +104,7 @@ export default {
         });
     },
     setProject() {
+      // Load the project
       const passThrough = store.state.passThrough;
       if (passThrough) {
         this.project = passThrough;

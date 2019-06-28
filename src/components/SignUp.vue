@@ -69,6 +69,7 @@ export default {
   methods: {
     emailValid(email) {
       console.log(email);
+      // Regex to test the email format
       let regex = /\S+@\S+\.\S+/;
       if (regex.test(email)) {
         return true;

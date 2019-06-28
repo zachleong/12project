@@ -33,6 +33,7 @@ export default {
     };
   },
   mounted() {
+    //   Load all of the users projects
     const uid = store.state.userID;
     const isAuth = store.state.userIsAuth;
     if (isAuth == true) {

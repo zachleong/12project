@@ -89,15 +89,6 @@ export default {
     goToPage(url) {
       this.$router.push(url);
     },
-    enter() {
-      console.log("enter");
-    },
-    leave() {
-      console.log("levae");
-    },
-    toggleDrop() {
-      this.showDropdown = !this.showDropdown;
-    },
     signout() {
       signOut().then(() => {
         this.$router.push("/");

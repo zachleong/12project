@@ -32,10 +32,6 @@ firebase.auth().onAuthStateChanged(user => {
     store.commit("setAuthUser", false);
   }
 });
-export const googleLogin = () => {
-  const googleProvider = new firebase.auth.GoogleAuthProvider();
-  return firebase.auth().signInWithPopup(googleProvider);
-};
 export const signOut = () => {
   return firebase
     .auth()
@@ -155,6 +151,7 @@ export const getProfilePictureURL = uid => {
       return storageRef.child("profilePictures/default.svg").getDownloadURL();
     });
 };
+// Callback function to wait for authentication when a page loads
 export const waitForAuth = func => {
   firebase.auth().onAuthStateChanged(user => {
     func(user);
@@ -203,6 +200,7 @@ export const updateUser = user => {
     .doc(uid)
     .set(user);
 };
+// Add a new comment
 export const expressInterest = (project, user_comment) => {
   const db = firebase.firestore();
   const uid = firebase.auth().currentUser.uid;

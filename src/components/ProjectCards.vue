@@ -50,10 +50,12 @@ export default {
     this.getProjects();
   },
   methods: {
+    // Filter the projects based on the chosen categories
     filterProjects(projects) {
       const categories = store.state.projectCategories;
       if (categories) {
         let _projects = [];
+        // For each category, if the project has that category, add it to the filtered array
         projects.forEach(project => {
           let catInProj = false;
           project.categories.forEach(cat => {
@@ -65,6 +67,7 @@ export default {
             _projects.push(project);
           }
         });
+        // Reset the categories store
         store.commit("setCategories", null);
         return _projects;
       } else {
@@ -89,7 +92,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 h3 {
   margin: 40px 0 0;
