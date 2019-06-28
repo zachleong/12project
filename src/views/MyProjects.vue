@@ -65,8 +65,6 @@ export default {
 .create-project-tag {
   text-align: left;
   display: inline-block;
-  //   position: relative;
-  //   left: 13%;
   color: #409eff;
 }
 .create-project-tag:hover {

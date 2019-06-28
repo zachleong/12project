@@ -27,7 +27,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import store from "@/Vuex/store";
-// import { googleLogin } from "@/firebase/firebase";
 export default {
   data() {
     return {
@@ -70,11 +69,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .google-but {
-  //   background-color: #42b983;
   background-color: rgb(19, 206, 102);
   border: none;
   display: inline-block;
-  // TODO - add more padding to match login button
   margin-top: 15px;
 }
 .google-but:hover {

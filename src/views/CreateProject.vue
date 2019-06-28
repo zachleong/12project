@@ -50,7 +50,6 @@ export default {
       project: {
         projectTitle: "",
         projectDesc: "",
-        // technologies: [],
         categories: "",
         tags: ""
       },

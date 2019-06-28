@@ -97,10 +97,8 @@ export default {
     },
     toggleDrop() {
       this.showDropdown = !this.showDropdown;
-      //   console.log("toggle");
     },
     signout() {
-      //   console.log("singing out");
       signOut().then(() => {
         this.$router.push("/");
       });
@@ -153,7 +151,6 @@ export default {
   text-decoration: none;
   font: inherit;
   box-sizing: inherit;
-  //   border: 4px solid black;
   padding: 10px 15px 10px 15px;
   color: #2c3e50;
   display: flex;
@@ -191,7 +188,6 @@ export default {
   margin-top: 2px;
 }
 .router-link-exact-active {
-  //   background: rgba(255, 255, 255, 0.8);
   border-bottom: 2px solid;
   border-bottom-color: #409eff;
   animation: border-fade-in 0.4s;
@@ -210,11 +206,9 @@ export default {
   padding: 0 10px 0 10px;
 }
 .navbar {
-  //NOTE: Had to be done to have drop down because position sticky creates new stacking context?
   position: relative;
   top: 0;
   width: 100%;
-  //   height: 70px;
   display: inline-block;
   -webkit-box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.1);

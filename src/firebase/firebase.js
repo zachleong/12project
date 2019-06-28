@@ -28,7 +28,6 @@ firebase.auth().onAuthStateChanged(user => {
       store.commit("setUserPictureURL", url);
     });
   } else {
-    //   Store should be cleared on sign out
     console.log("not signed in");
     store.commit("setAuthUser", false);
   }
@@ -72,7 +71,6 @@ export const getProjectFromDB = docID => {
       return newproject;
     });
 };
-// NOTE - Why is this function specific to the collection, it's projects?
 export const getProjectsFromDB = col => {
   const db = firebase.firestore();
   return db
@@ -103,7 +101,6 @@ export const getUserProjects = uid => {
     });
 };
 
-// TODO makes these function names better
 export const setProject = project => {
   const db = firebase.firestore();
   project.userID = firebase.auth().currentUser.uid;
@@ -137,7 +134,6 @@ export const uploadProfilePic = file => {
   const storage = firebase.storage();
   const storageRef = storage.ref();
   const newfilename = firebase.auth().currentUser.uid;
-  // NOTE: Make sure there are no xss or similiar vulnerabitlies here
   const fileRef = storageRef.child(`profilePictures/${newfilename}`);
   return fileRef.put(file).then(() => {
     getProfilePictureURL(newfilename).then(url => {

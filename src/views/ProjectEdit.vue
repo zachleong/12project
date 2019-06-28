@@ -105,7 +105,6 @@ export default {
     },
     setProject() {
       const passThrough = store.state.passThrough;
-      // TODO add profile picture to passthrough
       if (passThrough) {
         this.project = passThrough;
         this.projectTags = passThrough.tags.join(", ");
@@ -128,7 +127,6 @@ export default {
   background-color: #f56c6c;
 }
 .delete-button {
-  //   background-color: #42b983;
   background-color: #f56c6c;
   border: none;
   margin: 5px;
@@ -137,7 +135,6 @@ export default {
   background-color: rgb(19, 206, 102);
 }
 .save-button {
-  //   background-color: #42b983;
   background-color: rgb(19, 206, 102);
   border: none;
   margin: 5px;

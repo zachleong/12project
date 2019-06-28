@@ -77,7 +77,6 @@ export default {
   width: 75%;
 }
 .grid-item {
-  //   padding: 75px;
   line-height: 250px;
   color: white;
   border-radius: 20px;

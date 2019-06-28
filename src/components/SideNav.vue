@@ -63,7 +63,6 @@ export default {
       if (categories) {
         this.checkedCategories = categories;
         this.isIndeterminate = true;
-        // store.commit("setCategory", null);
       }
     }
   },
@@ -89,7 +88,6 @@ export default {
   font-family: "Nunito", sans-serif;
 }
 .sidenav {
-  //   z-index: -1;
   position: absolute;
   height: 100%;
   width: 130px;
@@ -100,14 +98,6 @@ export default {
   background-color: white;
   padding: 15px;
 }
-// .slide-leave-active,
-// .slide-enter-active {
-//   transition: left 0.4s;
-// }
-// .slide-enter,
-// .slide-leave-to {
-//   left: -150px;
-// }
 .sidenav-content {
   margin-top: 80px;
 }

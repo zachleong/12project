@@ -28,7 +28,6 @@ export default {
   },
   data() {
     return {
-      //Should this changing data be in here?
       projects: null,
       projectsFiltered: null
     };

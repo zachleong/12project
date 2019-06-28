@@ -249,10 +249,6 @@ export default {
 .profile-link:hover {
   cursor: pointer;
 }
-.comments {
-  //   display: inline-block;
-  //   grid-row: 4 / 5;
-}
 .expressInterest {
   margin: 15px 0 15px 0;
 }
@@ -268,7 +264,6 @@ export default {
 }
 .project-info {
   display: inline-grid;
-  //   grid-template-columns: 50% 50%;
   grid-template-columns: 5fr 2fr;
   grid-row-gap: 30px;
   grid-column-gap: 15px;
@@ -285,14 +280,11 @@ export default {
 }
 .project-author {
   text-align: left;
-  //   position: relative;
-  //   left: 20px;
 }
 .project-title {
   text-align: left;
   border-bottom: 1px solid #ebeef5;
   padding-bottom: 10px;
-  //   width: 100%;
 }
 .project-header {
   grid-column: 1/3;

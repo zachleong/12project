@@ -1,17 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-// import Explore from "./views/Explore.vue";
-// import AuthPage from "./views/AuthPage.vue";
-// import Projects from "./views/Projects.vue";
-// import ProjectInfo from "./views/ProjectInfo.vue";
-// import ProjectEdit from "./views/ProjectEdit.vue";
-// import CreateProject from "./views/CreateProject.vue";
-// import MyProjects from "./views/MyProjects.vue";
-// import UserProfile from "./views/UserProfile.vue";
-// import MyProfile from "./views/MyProfile.vue";
-// import EditProfile from "./views/EditProfile.vue";
-// import Guide from "./views/Guide.vue";
 import store from "@/Vuex/store";
 
 Vue.use(Router);
@@ -110,11 +99,7 @@ export default new Router({
     {
       path: "/about",
       name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ "./views/About.vue")
+      component: () => import("./views/About.vue")
     },
     {
       path: "/guide",
