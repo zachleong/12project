@@ -1,5 +1,5 @@
 <template>
-  <div class="editproject">
+  <div>
     <h1>Edit Project</h1>
     <div v-if="project">
       <input
@@ -8,11 +8,32 @@
         placeholder="Title"
         class="input project-in"
       />
+      <el-select
+        v-model="project.categories"
+        multiple
+        placeholder="Categories"
+        class="lang-select"
+      >
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+          class="lang-options"
+        >
+        </el-option>
+      </el-select>
       <textarea
         type="text"
         v-model="project.desc"
         placeholder="Project description"
         class="input project-desc"
+      />
+      <input
+        type="text"
+        v-model="projectTags"
+        placeholder="Tags"
+        class="input project-tags"
       />
       <br />
       <button @click="onSubmit" type="primary" class="button save-button">
@@ -26,17 +47,39 @@
     </div>
   </div>
 </template>
+
 <script>
 import store from "@/Vuex/store";
 import { getProjectFromDB } from "@/firebase/firebase";
 import { updateProject } from "@/firebase/firebase";
 import { deleteProject } from "@/firebase/firebase";
+
 export default {
   data() {
     return {
-      project: null,
       projectSaved: false,
-      projectDeleted: false
+      projectDeleted: false,
+      project: null,
+      projectIsSet: false,
+      projectTags: null,
+      options: [
+        {
+          value: "Frontend",
+          label: "Frontend"
+        },
+        {
+          value: "Backend",
+          label: "Backend"
+        },
+        {
+          value: "Pen testing",
+          label: "Penetration testing"
+        },
+        {
+          value: "Other",
+          label: "Other"
+        }
+      ]
     };
   },
   mounted() {
@@ -44,6 +87,8 @@ export default {
   },
   methods: {
     onSubmit() {
+      this.project.tags = this.projectTags.split(",");
+      console.log(this.project);
       updateProject(this.project).then(() => {
         this.projectSaved = true;
       });
@@ -63,6 +108,7 @@ export default {
       // TODO add profile picture to passthrough
       if (passThrough) {
         this.project = passThrough;
+        this.projectTags = passThrough.tags.join(", ");
       } else {
         getProjectFromDB(this.$route.params.projectID)
           .then(project => {
@@ -77,23 +123,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.comment-name {
-  padding-bottom: 15px;
-  border-bottom: 1px solid #ebeef5;
-  font-size: 20px;
-}
-.editproject {
-  width: 65%;
-  display: inline-block;
-}
-.comment {
-  margin-top: 20px;
-  text-align: left;
-  border: 1px solid #ebeef5;
-  padding: 0 20px 20px 20px;
-  border-radius: 4px;
-}
+<style lang="scss">
 .delete-button {
   //   background-color: #42b983;
   background-color: #f56c6c;
@@ -106,14 +136,32 @@ export default {
   border: none;
   margin: 5px;
 }
+.project-tags {
+  width: 65%;
+  display: inline-block;
+  margin-bottom: 10px;
+}
 .project-in {
   margin: 10px 0;
-  width: 100%;
+  width: 49%;
 }
 .project-desc {
   transition: border 0.4s;
-  width: 100%;
+  width: 65%;
   height: 200px;
   resize: vertical;
+}
+.lang-select {
+  margin-left: 1%;
+  font-family: "Nunito", sans-serif;
+}
+.lang-options {
+  font-family: "Nunito", sans-serif;
+}
+.el-input__inner {
+  font-size: 16px !important;
+  font-family: "Nunito", sans-serif;
+  min-height: 44px !important;
+  border: 1px solid #ebeef5 !important;
 }
 </style>

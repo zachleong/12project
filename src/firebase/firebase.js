@@ -115,9 +115,12 @@ export const updateProject = project => {
   const _project = {
     projectDesc: project.desc,
     projectTitle: project.title,
+    categories: project.categories,
+    tags: project.tags,
     userID: firebase.auth().currentUser.uid,
     userName: firebase.auth().currentUser.displayName
   };
+  console.log(_project);
   return db
     .collection("Projects")
     .doc(project.id)
