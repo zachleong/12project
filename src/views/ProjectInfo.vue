@@ -52,9 +52,9 @@
           >
             Send to Project Manager
           </button>
-          <h2 v-if="expressSuccess">Successfully sent offer</h2>
-          <h2>Offers</h2>
-          <div class="comments" v-if="projectComments != null">
+          <h2 v-if="expressSuccess">Successfully sent message</h2>
+          <div class="comments" v-if="projectComments != null && userIsOwner">
+            <h2>Your Offers:</h2>
             <div
               class="comment"
               v-for="comment in projectComments"
@@ -65,14 +65,21 @@
                   {{ comment.username }}
                 </a>
                 <div class="comment-buttons" v-if="userIsOwner">
-                  <a class="accept-offer offer-buttons button">Accept Offer</a>
-                  <a class="deny-offer offer-buttons button">Deny Offer</a>
+                  <a
+                    class="accept-offer offer-buttons button"
+                    @click="acceptOffer(comment.userID)"
+                    >Accept Offer</a
+                  >
+                  <a
+                    class="deny-offer offer-buttons button"
+                    @click="denyOffer(comment.userID)"
+                    >Delete Offer</a
+                  >
                 </div>
               </div>
               <p>{{ comment.comment }}</p>
             </div>
           </div>
-          <div v-else>No offers yet...</div>
         </div>
       </div>
       <div class="project-details card">
@@ -97,6 +104,7 @@ import { getProjectFromDB } from "@/firebase/firebase";
 import { getProfilePictureURL } from "@/firebase/firebase";
 import { expressInterest } from "@/firebase/firebase";
 import { getProjectComments } from "@/firebase/firebase";
+import { deleteComment } from "@/firebase/firebase";
 export default {
   data() {
     return {
@@ -120,6 +128,23 @@ export default {
     this.setProject();
   },
   methods: {
+    acceptOffer(uid) {
+      this.goToPage(`/profile/${uid}`);
+    },
+    denyOffer(uid) {
+      deleteComment(this.project.id, uid)
+        .then(() => {
+          console.log("deleted comment");
+          for (let index in this.projectComments) {
+            if (this.projectComments[index].userID == uid) {
+              this.projectComments.splice(index, 1);
+            }
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
     goToPage(url) {
       this.$router.push(url);
     },

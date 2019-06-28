@@ -223,4 +223,8 @@ export const getProjectComments = project => {
       return comments;
     });
 };
+export const deleteComment = (projectid, uid) => {
+  const db = firebase.firestore();
+  return db.doc(`Projects/${projectid}/comments/${uid}`).delete();
+};
 console.log("firebase initialized");
