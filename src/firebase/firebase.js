@@ -138,9 +138,13 @@ export const uploadProfilePic = file => {
   const storageRef = storage.ref();
   const newfilename = firebase.auth().currentUser.uid;
   // NOTE: Make sure there are no xss or similiar vulnerabitlies here
-  // Also usernames may be duplicate
   const fileRef = storageRef.child(`profilePictures/${newfilename}`);
-  return fileRef.put(file);
+  return fileRef.put(file).then(() => {
+    getProfilePictureURL(newfilename).then(url => {
+      store.commit("setUserPictureURL", url);
+      return;
+    });
+  });
 };
 export const getProfilePictureURL = uid => {
   const storage = firebase.storage();

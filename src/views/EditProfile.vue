@@ -15,7 +15,7 @@
       <button @click="saveProfile" type="primary" class="button save-button">
         Save Profile
       </button>
-      <a v-if="saved">Saved</a>
+      <el-alert type="success" v-if="saved" title="Saved" show-icon />
       <div class="about">
         <div class="about-header">
           <h2 class="about-me-tag">About me:</h2>
@@ -82,6 +82,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.el-alert {
+  margin-bottom: 10px;
+  color: rgb(19, 206, 102);
+}
 .save-button {
   background-color: rgb(19, 206, 102);
   margin-bottom: 10px;
