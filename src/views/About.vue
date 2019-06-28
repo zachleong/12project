@@ -3,9 +3,11 @@
     <h1 class="underline">About:</h1>
     <p>
       Git Money is a software collaboration platform. It enables software
-      developers to easily find projects they are interested in working on. Once
-      you have found a project, you may offer to contribute for free or request
-      to be contracted.
+      developers to easily find projects they are interested in working on. It
+      differs from sites like Git-Hub as this site's focus is on helping users
+      find new projects, instead of hosting the project itself. Once you have
+      found a project, you may offer to contribute for free or request to be
+      contracted.
     </p>
     <h1 class="underline">Guide:</h1>
     <p v-if="!userIsAuth">Register:</p>
