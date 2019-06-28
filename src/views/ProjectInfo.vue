@@ -68,7 +68,7 @@
                   <a
                     class="accept-offer offer-buttons button"
                     @click="acceptOffer(comment.userID)"
-                    >Accept Offer</a
+                    >View profile</a
                   >
                   <a
                     class="deny-offer offer-buttons button"
