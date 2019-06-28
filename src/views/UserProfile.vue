@@ -18,6 +18,8 @@
       </div>
       <p>{{ user.about }}</p>
     </div>
+    <h2>Contact Details:</h2>
+    <p>{{ user.email }}</p>
   </div>
 </template>
 <script>
