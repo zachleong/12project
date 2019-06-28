@@ -38,7 +38,7 @@ export const googleLogin = () => {
   return firebase.auth().signInWithPopup(googleProvider);
 };
 export const signOut = () => {
-  firebase
+  return firebase
     .auth()
     .signOut()
     .then(() => {
@@ -174,7 +174,8 @@ export const createAccount = (username, email, password) => {
       });
       updateUser({
         displayName: username,
-        userID: usercred.user.uid
+        userID: usercred.user.uid,
+        email: usercred.user.email
       });
       store.commit("setUserName", username);
     });

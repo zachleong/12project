@@ -35,12 +35,12 @@
             <li class="dropdown-el button" @click="signout">
               Sign Out
             </li>
-            <li class="dropdown-el">
-              <router-link
-                style="text-decoration:none; color: black;"
-                to="/myprofile"
-                >Profile</router-link
-              >
+            <li
+              class="dropdown-el button"
+              @click="goToPage(`/myprofile`)"
+              style="text-decoration:none; margin-top: 10px;"
+            >
+              Profile
             </li>
           </ul>
         </span>
@@ -86,6 +86,9 @@ export default {
     }
   },
   methods: {
+    goToPage(url) {
+      this.$router.push(url);
+    },
     enter() {
       console.log("enter");
     },
@@ -98,7 +101,9 @@ export default {
     },
     signout() {
       //   console.log("singing out");
-      signOut();
+      signOut().then(() => {
+        this.$router.push("/");
+      });
     },
     goToLogin() {
       this.$router.push({ name: "login" });
